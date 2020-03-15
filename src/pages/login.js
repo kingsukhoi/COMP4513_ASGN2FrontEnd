@@ -1,5 +1,11 @@
 import React from "react"
 import { Form, Input, Button, Checkbox } from 'antd';
+import 'antd/es/Button/style/index.css';
+import 'antd/es/input/style/index.css';
+import 'antd/es/Checkbox/style/index.css';
+import 'antd/es/cascader/style/index.css';
+import 'antd/es/Form/style/index.css';
+
 
 const layout = {
   labelCol: {
@@ -70,6 +76,7 @@ const Demo = () => {
           Submit
         </Button>
       </Form.Item>
+
     </Form>
   );
 };
