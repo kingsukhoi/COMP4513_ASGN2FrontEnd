@@ -1,84 +1,17 @@
-import React from "react"
-import { Form, Input, Button, Checkbox } from 'antd';
-import 'antd/es/Button/style/index.css';
-import 'antd/es/input/style/index.css';
-import 'antd/es/Checkbox/style/index.css';
-import 'antd/es/cascader/style/index.css';
-import 'antd/es/Form/style/index.css';
+import React,{useState} from "react"
+import { Button } from 'antd'
+// import { Button } from 'react-bulma-components/dist';
 
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
 
-const Demo = () => {
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
-
+const Login = () => {
+  const [form, setForm] = useState({ name: '', password: '' });
+  const update = (({ target }) => setForm({ ...form, [target.name]: target.value }))
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-
-    </Form>
-  );
+    <div>
+      <Button color="primary">My button</Button>
+    </div>
+  )
 };
 
-export default () => (<Demo/>)
+export default () => (<Login/>);
