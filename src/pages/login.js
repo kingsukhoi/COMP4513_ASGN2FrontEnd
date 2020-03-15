@@ -1,8 +1,6 @@
 import React from "react"
 import { Form, Input, Button, Checkbox } from 'antd';
 
-var _button = require('antd/lib/button');
-
 const layout = {
   labelCol: {
     span: 8,
@@ -68,9 +66,9 @@ const Demo = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <_button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit">
           Submit
-        </_button>
+        </Button>
       </Form.Item>
     </Form>
   );
