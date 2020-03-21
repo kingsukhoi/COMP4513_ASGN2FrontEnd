@@ -1,0 +1,4 @@
+.ReactModal__Overlay--after-open, .modal-card-head {
+    z-index: 31;
+    width: 100%;
+}

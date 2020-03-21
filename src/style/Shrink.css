@@ -1,0 +1,16 @@
+.singleMovie-enter  {
+  transform: translatex(100vh);
+}
+.singleMovie-enter-active {
+  transform: translatex(0vh);
+  transition-duration: 1s;
+}
+
+.singleMovie-exit {
+  transform: translatex(200vh);
+  transition-duration: 1s;
+
+}
+.singleMovie-exit-active {
+  transform: translatex(200vh);
+}

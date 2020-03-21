@@ -1,0 +1,11 @@
+.favImage{
+    max-height:15vh !important;
+    width: auto;
+    height: auto;
+}
+
+.closeButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
