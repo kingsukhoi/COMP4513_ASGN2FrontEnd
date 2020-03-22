@@ -1,23 +1,49 @@
-import React,{useState} from "react";
-import { Form, Input, Button } from 'antd';
+import React, {useState} from "react";
+import { Form, Input, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../style/Login.css'
+import { navigate } from "gatsby";
 // import { Button } from 'react-bulma-components/dist';
 
 
 
 const Login = () => {
-  const [form, setForm] = useState({ name: '', password: '' });
-  //const update = (({ target }) => setForm({ ...form, [target.name]: target.value }));
-  
+  const [validLogin, setValidLogin] = useState(true);
+  const invalidLogin  = validLogin ? "" : <Alert 
+                                        message="Invalid credentials, try again!"
+                                        type="error"
+                                        banner
+                                        className="invalid-login"
+                                        />;
+  //Note this is not fully complete. I can't really test until log in api is done
   const postData = async (values) => {
-
-    console.log('Success:', JSON.stringify(values));
+    const location = window.location.hostname;
+    try {
+      const response = await fetch(`https://${location}/api/login`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+      });
+      const validUser = await response.json();
+      if( validUser ) {
+        navigate("/");
+      }
+      
+      //T
+      
+    } catch(e) {
+      console.log(e);
+      setValidLogin( false );
+    }
   }
 
   return (
     <div id="login-container">
+     
       <Form
         name="login"
         className="login-form"
@@ -60,6 +86,7 @@ const Login = () => {
           </Button>
         </Form.Item>
       </Form>
+      {invalidLogin}
       
     </div>
   )
