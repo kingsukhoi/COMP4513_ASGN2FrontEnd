@@ -4,41 +4,32 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../style/Login.css'
 import { navigate } from "gatsby";
+import {handleLogin, isLoggedIn} from '../services/auth'
 // import { Button } from 'react-bulma-components/dist';
 
 
 
 const Login = () => {
+  console.log(isLoggedIn());
+  if(isLoggedIn()) {
+    navigate("/");
+  }
   const [validLogin, setValidLogin] = useState(true);
   const invalidLogin  = validLogin ? "" : <Alert 
-                                        message="Invalid credentials, try again!"
+                                        message="Invalid username or password."
                                         type="error"
                                         banner
                                         className="invalid-login"
                                         />;
-  //Note this is not fully complete. I can't really test until log in api is done
-  const postData = async (values) => {
-    const location = window.location.hostname;
-    try {
-      const response = await fetch(`https://${location}/api/login`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values)
+
+  //Send the data from the form to the login handler in auth services
+  const postData = (formValues) => {
+    handleLogin(formValues)
+      .then( (loginResult)=> {
+        setValidLogin(loginResult);
+      }).catch(()=>{
+        console.error('Something went very wrong!');
       });
-      const validUser = await response.json();
-      if( validUser ) {
-        navigate("/");
-      }
-      
-      //T
-      
-    } catch(e) {
-      console.log(e);
-      setValidLogin( false );
-    }
   }
 
   return (
