@@ -2,6 +2,7 @@ import React from "react";
 import * as _ from "lodash";
 import { Hero } from 'react-bulma-components'
 import { Link } from "gatsby"
+import { navigate } from "@reach/router"
 import { CSSTransition } from 'react-transition-group';
 import 'react-bulma-components/dist/react-bulma-components.min.css'
 import "../style/Home.css";
@@ -45,9 +46,9 @@ class Home extends React.Component {
         switch (this.state.searchEnter) {
 
             case "show":
-                return (<Link push to={"/movies"} />);
+                return (<Link push to={"app/movies/"} />);
             case "search":
-                return (<Link push to={"/movies?title=" + this.state.searchQuery} />)
+                return (<Link push to={"app/movies/?title=" + this.state.searchQuery} />)
             default:
                 return this.renderNormal();
         }
@@ -68,8 +69,9 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="level">
-                                <div onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</div>
-                                <div onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</div>
+                                <div onClick={() => navigate("/app/movies")} className="level-item has-text-centered button is-block is-info">Show All Movies</div>
+                                {/* <Link to={"app/movies"} >Show All Movies</Link> */}
+                                <div onClick={() => navigate(`/app/movies?title=${this.state.searchQuery}`)} className="level-item has-text-centered button is-block is-info">Search Movies</div>
                             </div>
                         </div>
                     </CSSTransition>
