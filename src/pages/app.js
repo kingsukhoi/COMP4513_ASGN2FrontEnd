@@ -3,6 +3,7 @@ import { Router } from "@reach/router"
 import PrivateRoute from "../components/PrivateRoute"
 import Home from "../components/Home"
 import Login from "../components/Login"
+import Movies from "../components/Movies"
 
 
 
@@ -10,9 +11,9 @@ import Login from "../components/Login"
 const App = () => {
     return (
       <Router basepath="/app">
-        <PrivateRoute path="/home" component={Home}></PrivateRoute>
-        <Login path="/login" />
-        <Login path="/" />
+        <PrivateRoute path="/" component={Home}></PrivateRoute>
+        <PrivateRoute path="/movies" component={Movies}></PrivateRoute>
+        <Login path="/login" />    
       </Router>
 
     )
