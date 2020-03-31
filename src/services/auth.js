@@ -3,7 +3,7 @@ export const isBrowser = () => typeof window !== "undefined"
 export const getToken = () =>
   isBrowser() && window.localStorage.getItem("token")
     ? JSON.parse(window.localStorage.getItem("token"))
-    : {}
+    : false
 
 const setToken = token =>
   window.localStorage.setItem("token", JSON.stringify(token))
@@ -19,11 +19,10 @@ export const handleLogin = async (values) => {
           body: JSON.stringify(values)
         });
         const status = await response.status;
-        console.log(status);
+
         const userData = await response.json();
-        console.log(userData);
+
         if( userData && status !== 401) {
-          console.log(userData);
           return setToken(userData);
         }
         
@@ -37,8 +36,7 @@ export const handleLogin = async (values) => {
 
 export const isLoggedIn = () => {
   const token = getToken();
-  console.log(token);
-  return !token
+  return !!token
 }
 
 export const logout = callback => {
