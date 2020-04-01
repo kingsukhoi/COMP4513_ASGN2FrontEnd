@@ -1,9 +1,10 @@
 import React from 'react';
 import * as _ from "lodash";
 import {defaultQueryParams} from "./index";
+import YearFilter from './YearFilter'
 import { Input,InputNumber, Slider } from "antd"
 
-import "../../style/Slider.css"
+import "../../../style/Slider.css"
 
 class MovieFilter extends React.Component {
     buttonStyle = {
@@ -113,7 +114,7 @@ class MovieFilter extends React.Component {
                         </div>
                     </div>
 {/* Year Filter area */}
-                    <div className="field">
+                    {/* <div className="field">
                         <h3 className="title is-3">Year</h3>
                         <div className="control level">
                             <div className="level-item level-left">
@@ -166,7 +167,8 @@ class MovieFilter extends React.Component {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
+                    <YearFilter/>
 {/* Rating filter area */}
                     <div className="field">
                         <h3 className="title is-3">Rating</h3>

@@ -1,0 +1,19 @@
+.radioStyle  {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+  }
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontalFlex{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_one{
+    flex-grow: 1;
+}
