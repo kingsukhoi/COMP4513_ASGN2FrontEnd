@@ -1,17 +1,16 @@
 import React from 'react';
 import * as _ from "lodash";
-import MovieFilter from './MovieFilter';
+import MovieFilter from './MovieFilter/';
 import MovieList from './MovieList';
-import { getToken } from '../../services/auth'
+import { getToken, logout } from '../../services/auth'
 import Layout from '../Layout/Layout';
 import { getSearchParam } from '../../services/helper'
+import { navigate } from 'gatsby';
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
-    minYear: 1900,
-    maxYear: new Date().getFullYear(),
     minRating: 0,
     maxRating: 10
 };
@@ -52,6 +51,7 @@ class Movies extends React.Component {
         }
         catch{
             console.error("aaaaa");
+            logout();
         }
         return false;
     }
