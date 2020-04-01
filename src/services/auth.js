@@ -1,9 +1,10 @@
+import { navigate } from 'gatsby';
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getToken = () =>
   isBrowser() && window.localStorage.getItem("token")
     ? JSON.parse(window.localStorage.getItem("token"))
-    : false
+    : {}
 
 const setToken = token =>
   window.localStorage.setItem("token", JSON.stringify(token))
@@ -36,10 +37,10 @@ export const handleLogin = async (values) => {
 
 export const isLoggedIn = () => {
   const token = getToken();
-  return !!token
+  return Object.entries(token).length !==0
 }
 
-export const logout = callback => {
-  setToken({})
-  callback()
+export const logout = () => {
+  setToken({});
+  navigate('/app/login/');
 }
