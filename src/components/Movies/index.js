@@ -4,7 +4,7 @@ import MovieFilter from './MovieFilter';
 import MovieList from './MovieList';
 import { getToken } from '../../services/auth'
 import Layout from '../Layout/Layout';
-// import {generateRegex, getSearchParam} from "../Helpers/Helper";
+import { getSearchParam } from '../../services/helper'
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
 
@@ -20,19 +20,14 @@ class Movies extends React.Component {
 
     constructor(props) {
         super(props);
-        //const searchParams = _.cloneDeep(defaultQueryParams);
-        //searchParams.title = getSearchParam("title");
-        let movies = [];
-        let loading = true;
-        if (localStorage.getItem('movies')) {
-            movies = this.getStoredMovies();
-            loading = false
-        }
+        const searchParams = _.cloneDeep(defaultQueryParams);
+        searchParams.title = getSearchParam("title");
+
         this.state = {
-            movies: movies,
+            movies: [],
             filteredMovies: [],
-            //searchParams: searchParams,
-            isLoading: loading,
+            searchParams: searchParams,
+            isLoading: true,
             movieFilterExpand: true
         }
     }
@@ -44,25 +39,32 @@ class Movies extends React.Component {
         });
     }
 
-    async componentDidMount() {
-        const newState = await _.cloneDeep(this.state);
+    async getFullMovies() {
         const token = getToken().token;
-        if (!localStorage.getItem('movies')) {
-            const request = await fetch(`http://localhost:8080/api/brief?auth_token=${token}`);
-            
+        try{
+            const request = await fetch(`http://localhost:8080/api/brief?auth_token=${token}`);   
             let parsedMovies = await request.json();
-
             parsedMovies.map(x => {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            parsedMovies = parsedMovies.sort((a, b) => (a.title > b.title) - (a.title < b.title));
-            newState.movies = parsedMovies;
-            localStorage.setItem('movies', JSON.stringify(parsedMovies));
-            newState.isLoading = false;
-            this.setState(newState);
+            return parsedMovies = parsedMovies.sort((a, b) => (a.title > b.title) - (a.title < b.title));
         }
-        console.log("fetched stuff");
+        catch{
+            console.error("aaaaa");
+        }
+        return false;
+    }
+
+    async componentDidMount() {
+        const newState = await _.cloneDeep(this.state); 
+        
+        let parsedMovies = await this.getFullMovies();
+        newState.movies = parsedMovies;
+            
+        newState.isLoading = false;
+        this.setState(newState);
+        
         this.filterOnQuery();
     }
 
@@ -96,11 +98,11 @@ class Movies extends React.Component {
             <React.Fragment>
                 <Layout>
                 <div className="columns">
-                    {/* {this.state.movieFilterExpand ? <MovieFilter
+                    {this.state.movieFilterExpand ? <MovieFilter
                         updateQuery={this.updateQuery}
                         searchParams={this.state.searchParams}
                         onSearch={this.filterOnQuery}
-                    /> : null} */}
+                    /> : null}
 
                     <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
                         {/* <FontAwesomeIcon icon={this.state.movieFilterExpand ? faCaretLeft : faCaretRight}

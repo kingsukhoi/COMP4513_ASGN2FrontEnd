@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleMovie from "./SingleMovie";
-// import '../Style/Table.css'
-// import '../Style/Shrink.css'
+import '../../style/Table.css'
+import '../../style/Shrink.css'
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 class MovieList extends React.Component {
