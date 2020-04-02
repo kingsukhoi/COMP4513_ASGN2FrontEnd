@@ -5,7 +5,7 @@ import MovieList from './MovieList';
 import { getToken, logout } from '../../services/auth'
 import Layout from '../Layout/Layout';
 import { getSearchParam } from '../../services/helper'
-import { navigate } from 'gatsby';
+
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
 
@@ -13,6 +13,15 @@ export const defaultQueryParams = {
     title: "",
     minRating: 0,
     maxRating: 10
+};
+
+export const queryOptions = {
+    allMovies: "http://localhost:8080/api/brief", //"http://localhost:8080/api/movies",
+    brief: "http://localhost:8080/api/brief",
+    title: "http://localhost:8080/api/find/title/", //Just add :substring
+    findYear: "http://localhost:8080/api/find/year/", //just add :low, and :high
+    findRating: "http://localhost:8080/api/find/rating/", //just add :low, and :high
+    singleMovies: "http://localhost:8080/api/movies/" //just add :id
 };
 
 class Movies extends React.Component {
@@ -24,24 +33,20 @@ class Movies extends React.Component {
 
         this.state = {
             movies: [],
-            filteredMovies: [],
             searchParams: searchParams,
             isLoading: true,
             movieFilterExpand: true
         }
     }
+    
 
-    getStoredMovies() {
-        return JSON.parse(localStorage.getItem('movies')).map(x => {
-            x.release_date = new Date(x.release_date);
-            return x;
-        });
-    }
 
-    async getFullMovies() {
+    async getMovies(url) {
         const token = getToken().token;
+        const authUrl = `${url}?auth_token=${token}`
+        console.log(authUrl);
         try{
-            const request = await fetch(`http://localhost:8080/api/brief?auth_token=${token}`);   
+            const request = await fetch(authUrl);   
             let parsedMovies = await request.json();
             parsedMovies.map(x => {
                 x.release_date = new Date(x.release_date);
@@ -51,7 +56,7 @@ class Movies extends React.Component {
         }
         catch{
             console.error("aaaaa");
-            logout();
+            //logout();
         }
         return false;
     }
@@ -59,31 +64,20 @@ class Movies extends React.Component {
     async componentDidMount() {
         const newState = await _.cloneDeep(this.state); 
         
-        let parsedMovies = await this.getFullMovies();
+        let parsedMovies = await this.getMovies(queryOptions.allMovies);
         newState.movies = parsedMovies;
             
         newState.isLoading = false;
         this.setState(newState);
-        
-        this.filterOnQuery();
     }
 
-    updateQuery = (searchParams) => {
-        const newState = _.cloneDeep(this.state);
-        newState.searchParams = searchParams;
-        this.setState(newState);
-    };
+    filterOnQuery = (query) => {
+        let results = this.getMovies(query);
+        results.then( (val) => {
+            this.setState({movies: val});
+        });
+        console.log("After");
 
-    filterOnQuery = () => {
-        // const newState = _.cloneDeep(this.state);
-        // newState.filteredMovies = newState.movies.filter((x) => {
-        //     return generateRegex(this.state.searchParams.title).test(x.title) &&
-        //         Number(x.release_date.getFullYear()) >= this.state.searchParams.minYear &&
-        //         Number(x.release_date.getFullYear()) <= this.state.searchParams.maxYear &&
-        //         Number(x.ratings.average) >= this.state.searchParams.minRating &&
-        //         Number(x.ratings.average) <= this.state.searchParams.maxRating;
-        // });
-        // this.setState(newState);
     };
     toggleClose = (e) => {
         this.setState({...this.state, movieFilterExpand: !this.state.movieFilterExpand})
