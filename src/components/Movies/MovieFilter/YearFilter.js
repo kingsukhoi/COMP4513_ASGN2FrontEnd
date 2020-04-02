@@ -85,8 +85,6 @@ class YearFilter extends React.Component {
                 </div>
                 <Button onClick={this.filter}>Search Year <ArrowRightOutlined /></Button>
             </div>
-
-
         )
     }
 }

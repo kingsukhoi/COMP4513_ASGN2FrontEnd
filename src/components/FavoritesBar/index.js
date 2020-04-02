@@ -1,20 +1,30 @@
 import React from "react";
 import SingleFavorite from "./SingleFavorite";
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons'
+import { getToken } from '../../services/auth'
 
 
 class FavoritesBar extends React.Component {
 
     state = {
-        expanded: true
+        expanded: true,
+        favorites: []
     };
+    async componentDidMount() {
+        const token = getToken();
+        const authUrl = `http://localhost:8080/api/favorites?auth_token=${token}`
+        
+        let userFavorites = await fetch(authUrl);
+        console.log(userFavorites);
+            
+        //this.setState({favorites: retrievedFavorites});
+    }
 
-    // renderList() {
-    //     return this.props.favorites.map((favorite, index) =>
-    //         <SingleFavorite favorite={favorite} key={favorite.id}/>
-    //     );
-    // }
+    renderList() {
+        return this.props.favorites.map((favorite, index) =>
+            <SingleFavorite favorite={favorite} key={favorite.id}/>
+        );
+    }
 
     style = {
         bottom: 0,
@@ -41,9 +51,9 @@ class FavoritesBar extends React.Component {
     render() {
         return (
             <React.Fragment>
-                {/* {this.renderFavsList()} */}
+                {this.renderFavsList()}
                 <div style={this.style} onClick={this.toggleClose}>
-                    {/* //<FontAwesomeIcon className="fa-2x" icon={this.state.expanded ? faCaretUp : faCaretDown}/> */}
+                    {this.state.expanded ? <CaretUpOutlined/> : <CaretDownOutlined />}
                 </div>
             </React.Fragment>)
     }

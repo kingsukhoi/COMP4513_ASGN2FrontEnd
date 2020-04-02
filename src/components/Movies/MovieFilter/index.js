@@ -13,13 +13,9 @@ class MovieFilter extends React.Component {
         marginRight: ".5rem",
     };
 
-
-
-
     clearQueryParams = (e)=>{
         this.props.onSearch(queryOptions.allMovies);
     };
-
 
     runSearch = (search)=>{
         this.props.onSearch(search);
@@ -28,15 +24,14 @@ class MovieFilter extends React.Component {
     render() {
         const { Search } = Input;
         return (
-
             <div className="column is-two-fifths filter-container">
                 <div className="container box">
                     <h1 className="title has-text-centered">Movie Filters</h1>
                     <label className="title is-3" htmlFor="TitleFilter">Title</label>
-  
+
                     <Search
                         placeholder={"Search for movie title."}
-                        onSearch={value => console.log(value)}
+                        onSearch={value => this.runSearch(`${queryOptions.title}${value}`)}
                         enterButton
                     />
                     <YearFilter runSearch={this.runSearch}/>
@@ -50,11 +45,9 @@ class MovieFilter extends React.Component {
                             onClick={this.clearQueryParams}
                         >Clear
                         </Button>
-
                     </div>
                 </div>
             </div>
-
         )
     }
 }

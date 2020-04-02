@@ -3,8 +3,10 @@ import * as _ from "lodash";
 import MovieFilter from './MovieFilter/';
 import MovieList from './MovieList';
 import { getToken, logout } from '../../services/auth'
-import Layout from '../Layout/Layout';
 import { getSearchParam } from '../../services/helper'
+import Layout from '../Layout/Layout';
+import { CaretLeftOutlined, CaretRightOutlined, LoadingOutlined } from '@ant-design/icons'
+
 
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
@@ -88,6 +90,7 @@ class Movies extends React.Component {
     }
 
     render() {
+        let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined/> : <CaretRightOutlined />;
         return (
             <React.Fragment>
                 <Layout>
@@ -99,16 +102,12 @@ class Movies extends React.Component {
                     /> : null}
 
                     <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
-                        {/* <FontAwesomeIcon icon={this.state.movieFilterExpand ? faCaretLeft : faCaretRight}
-                                         className="fa-2x" style={{height: "55vh"}}/> */}
+                        {arrow}
                     </div>
                     <div className="column has-text-centered">
-                        {this.state.isLoading ? <div>Loading</div> :
-                            //<FontAwesomeIcon icon={faSync} className="fa-spin fa-10x"/>
+                        {this.state.isLoading ? <LoadingOutlined /> :
                             <MovieList movies={this.state.movies}/>
-
                         }
-
                     </div>
                 </div>
                 </Layout>
