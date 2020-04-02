@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "gatsby";
+import { HeartOutlined } from '@ant-design/icons'
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faHeart} from '@fortawesome/free-solid-svg-icons';
 // import {FavoriteContext} from "../Context/FavoriteContex";
@@ -29,9 +30,8 @@ class SingleMovie extends React.Component {
                 <td>{this.props.releaseDate}</td>
                 <td>{this.props.rating}</td>
                 <td className="">
-                    <button onClick={this.onFavsClick} className="button is-1">a
-                        {/* <FontAwesomeIcon icon={faHeart}
-                                                                                                className="fa fa-heart"/> */}
+                    <button onClick={this.onFavsClick} className="button is-1">
+                    <HeartOutlined />
                     </button>
                     <Link to={"/Movies/Details?id=" + this.props.id} path={this.props.id} className="button is-1"
                           style={{margin: "0"}}>View</Link>
