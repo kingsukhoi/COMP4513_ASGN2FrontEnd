@@ -3,18 +3,13 @@ import SingleMovie from "./SingleMovie";
 import '../../style/Table.css'
 import '../../style/Shrink.css'
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import movieFlex from './movieFlex.module.css'
 
 class MovieList extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-
     RenderMovies = () => {
         if (this.props.movies.length !== 0) {
             return (
-                <tbody>
+                <div>
                 <TransitionGroup className="Movies">
                     {this.props.movies.map((x) => {
                         return (
@@ -36,7 +31,7 @@ class MovieList extends React.Component {
                     
                 })}
                 </TransitionGroup>
-            </tbody>
+            </div>
         )
     }
         return (
@@ -48,25 +43,13 @@ class MovieList extends React.Component {
         return (
             <div className="box table-container">
                 <h1 className="title">Movie List</h1>
-                <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
-                    <thead>
-                        <tr className="columns">
-                            <th className="column" />{/*Image*/}
-                            <th className="column">Title</th>
-                            <th className="column">Year</th>
-                            <th className="column">Rating</th>
-                            <th className="column" />{/*Heart and View*/}
-                        </tr>
-                    </thead>
-
+                <div className={movieFlex.containerFlex} >
                     <this.RenderMovies />
 
-                </table>
+                </div>
             </div>
         )
     }
 }
- 
-
 
 export default MovieList;

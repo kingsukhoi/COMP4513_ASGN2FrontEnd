@@ -6,9 +6,7 @@ import filterStyle from './filterStyle.module.css'
 
 
 class RatingsFilter extends React.Component {
-    buttonStyle = {
-        marginRight: ".5rem",
-    };
+
     sliderRange = {
         min: 0,
         max: 10

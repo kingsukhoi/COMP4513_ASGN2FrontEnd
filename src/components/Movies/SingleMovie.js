@@ -1,14 +1,11 @@
 import React from 'react';
 import {navigate} from "gatsby";
-import { HeartOutlined } from '@ant-design/icons'
+import { HeartOutlined, ArrowsAltOutlined } from '@ant-design/icons'
 import { addFavorite } from '../../services/helper'
+import { Card } from 'antd'
+import cardStyle from './cardStyle.module.css'
 
 class SingleMovie extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
-
     posterLink = "https://image.tmdb.org/t/p/w154/";
 
     onFavsClick = (e) => {
@@ -17,25 +14,21 @@ class SingleMovie extends React.Component {
 
     render() {
         return (
-            <tr>
-                <td>
-                    <figure className="image is-fullwidth">
-                        <img className="tableImage" src={this.posterLink + this.props.imageUrl} alt="Poster"
-                             aria-label="close" onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/>
-                    </figure>
-                </td>
-                {/* <td><Link to={"app/details?id=" + this.props.id} path={this.props.id}>{this.props.title}</Link></td> */}
-                <td>{this.props.releaseDate}</td>
-                <td>{this.props.rating}</td>
-                <td className="">
-                    <button onClick={this.onFavsClick} className="button is-1">
-                    <HeartOutlined />
-                    </button>
-                    <button onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}} className="button is-1"
-                          style={{margin: "0"}}>View</button>
-                </td>
-            </tr>
+            <Card
+                hoverable
+                className={cardStyle.cardStyle}
+                actions={[
+                    <HeartOutlined />,
+                    <ArrowsAltOutlined onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/>
 
+                ]}
+                bodyStyle={{padding: 0}}
+            >
+                <Card.Grid hoverable={false} className={cardStyle.imageStyle}><img  src={this.posterLink + this.props.imageUrl} alt={this.props.title} onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/></Card.Grid>
+                <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.title}</Card.Grid>
+                <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.releaseDate}</Card.Grid>
+                <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.rating}</Card.Grid>
+            </Card>
         )
     }
 }
