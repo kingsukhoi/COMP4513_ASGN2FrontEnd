@@ -1,10 +1,7 @@
 import React from 'react';
-import {Link, navigate} from "gatsby";
+import {navigate} from "gatsby";
 import { HeartOutlined } from '@ant-design/icons'
 import { addFavorite } from '../../services/helper'
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faHeart} from '@fortawesome/free-solid-svg-icons';
-// import {FavoriteContext} from "../../Context/FavoriteContex";
 
 class SingleMovie extends React.Component {
 
@@ -24,7 +21,7 @@ class SingleMovie extends React.Component {
                 <td>
                     <figure className="image is-fullwidth">
                         <img className="tableImage" src={this.posterLink + this.props.imageUrl} alt="Poster"
-                             aria-label="close"/>
+                             aria-label="close" onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/>
                     </figure>
                 </td>
                 {/* <td><Link to={"app/details?id=" + this.props.id} path={this.props.id}>{this.props.title}</Link></td> */}
@@ -42,8 +39,5 @@ class SingleMovie extends React.Component {
         )
     }
 }
-
-// SingleMovie.contextType = FavoriteContext;
-
 
 export default SingleMovie;

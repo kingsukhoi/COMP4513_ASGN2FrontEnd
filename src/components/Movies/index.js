@@ -65,8 +65,12 @@ class Movies extends React.Component {
 
     async componentDidMount() {
         const newState = await _.cloneDeep(this.state); 
-        
-        let parsedMovies = await this.getMovies(queryOptions.allMovies);
+        let url = queryOptions.allMovies;
+        let params = this.state.searchParams.title;
+        if (params !== "") {
+            url = `${queryOptions.title}${params}`
+        }
+        let parsedMovies = await this.getMovies(url);
         newState.movies = parsedMovies;
             
         newState.isLoading = false;

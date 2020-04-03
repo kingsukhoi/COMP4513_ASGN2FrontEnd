@@ -5,8 +5,6 @@ import YearFilter from './YearFilter'
 import RatingsFilter from './RatingsFilter'
 import { Button, Input} from "antd"
 
-import "../../../style/Slider.css"
-
 class MovieFilter extends React.Component {
 
     buttonStyle = {
@@ -31,7 +29,7 @@ class MovieFilter extends React.Component {
 
                     <Search
                         placeholder={"Search for movie title."}
-                        onSearch={value => this.runSearch(`${queryOptions.title}${value}`)}
+                        onSearch={value => value === "" ? this.runSearch(queryOptions.allMovies) : this.runSearch(`${queryOptions.title}${value}`)}
                         enterButton
                     />
                     <YearFilter runSearch={this.runSearch}/>
