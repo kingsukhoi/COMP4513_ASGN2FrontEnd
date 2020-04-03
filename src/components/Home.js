@@ -1,11 +1,19 @@
 import React from "react";
 import * as _ from "lodash";
-import { Hero } from 'react-bulma-components'
 import { Link } from "gatsby"
 import { navigate } from "@reach/router"
 import { CSSTransition } from 'react-transition-group';
-import 'react-bulma-components/dist/react-bulma-components.min.css'
 import "../style/Home.css";
+
+
+import {  Card, Button, Input, Form, Alert} from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+
+import 'react-bulma-components/dist/react-bulma-components.min.css'
+import { Hero } from 'react-bulma-components'
+
+
 
 class Home extends React.Component {
 
@@ -57,36 +65,34 @@ class Home extends React.Component {
 
     renderNormal() {
         return (
-            <Hero className="is-fullheight hero">
-                <div className="column is-4 is-offset-4" style={this.style}>
-                    <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear >
-                        <div className="box searchBox">
-                            <h3 className="title has-text-black has-text-centered">Your Movie List</h3>
+            <div className="is-fullheight hero" >
+            <div className="column is-4 is-offset-4" style={this.style}>
+                <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear >
+                    <Card className="box searchBox">
+                        <h3 className="title has-text-black has-text-centered">Your Movie List</h3>
 
-                            <div className="field">
-                                <div className="control">
-                                    <input name="searchQuery" onChange={this.onChange} className="input" type="text" placeholder="Title" />
-                                </div>
-                            </div>
-                            <div className="level">
-                                <div onClick={() => navigate("/app/movies")} className="level-item has-text-centered button is-block is-info">Show All Movies</div>
-                                {/* <Link to={"app/movies"} >Show All Movies</Link> */}
-                                <div onClick={() => navigate(`/app/movies?title=${this.state.searchQuery}`)} className="level-item has-text-centered button is-block is-info">Search Movies</div>
+                        <div className="field">
+                            <div className="control">
+                                <Input name="searchQuery" onChange={this.onChange} className="input" type="text" placeholder="Title" />
                             </div>
                         </div>
-                    </CSSTransition>
-                </div>
+                        <div className="level">
+                            <Button onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
+                            <Button onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
+                        </div>
+                    </Card>
+                </CSSTransition>
+            </div>
 
-                <footer>
-                    <a href="https://unsplash.com/@marjan_blan" className="navbar-end" >
+            <footer>
+                <a href="https://unsplash.com/@marjan_blan" className="navbar-end" >
 
-                        <span className="tag is-dark" style={this.linkBottomRight}>Photo by</span>
-                        <span className="tag is-info" style={this.linkBottomLeft}>@marjanblan</span>
+                    <span className="tag is-dark" style={this.linkBottomRight}>Photo by</span>
+                    <span className="tag is-info" style={this.linkBottomLeft}>@marjanblan</span>
 
-                    </a>
-                </footer>
-            </Hero>
-
+                </a>
+            </footer>
+        </div>
         )
     }
 
