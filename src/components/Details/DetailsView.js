@@ -3,17 +3,25 @@ import {addFavorite} from '../../services/helper'
 
 
 function DetailsView(props) {
+    
     function RenderCountries() {
+        if(props.contries !== null) { 
         return props.countries.map(x => {
             return <span key={x.iso_3166_1} className="tag">{x.name}</span>
-        })
+        })} else {
+            return <span className="tag">No Countries</span>
+        }
     }
 
     function RenderCompanies() {
-        return props.companies.map(x => {
-            console.log(x);
-            return <span key={x.id} className="tag">{x.name}</span>
-        })
+        if(props.companies !== null) { 
+            return props.companies.map(x => {
+                console.log(x);
+                return <span key={x.id} className="tag">{x.name}</span>
+            })
+        }else {
+            return <span className="tag">No Companies</span>
+        }
     }
 
     const addToFavorite = () => {
