@@ -18,7 +18,7 @@ class SingleMovie extends React.Component {
                 hoverable
                 className={cardStyle.cardStyle}
                 actions={[
-                    <HeartOutlined />,
+                    <HeartOutlined onClick={this.onFavsClick}/>,
                     <ArrowsAltOutlined onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/>
 
                 ]}
