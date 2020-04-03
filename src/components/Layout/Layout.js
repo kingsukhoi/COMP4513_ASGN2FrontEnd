@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getToken } from '../../services/auth';
 
-import NavBar from "../NavBar";
-import FavoritesBar from "../FavoritesBar";
+import NavBar from "./NavBar";
+import FavoritesBar from "./FavoritesBar";
 
 const Layout = ({ children }) => {
   const [favorites, setFavorites] = useState([]);

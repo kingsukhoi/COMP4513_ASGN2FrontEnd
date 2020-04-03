@@ -9,7 +9,7 @@ class MovieList extends React.Component {
     RenderMovies = () => {
         if (this.props.movies.length !== 0) {
             return (
-                <div>
+               
                 <TransitionGroup className="Movies">
                     {this.props.movies.map((x) => {
                         return (
@@ -31,7 +31,6 @@ class MovieList extends React.Component {
                     
                 })}
                 </TransitionGroup>
-            </div>
         )
     }
         return (

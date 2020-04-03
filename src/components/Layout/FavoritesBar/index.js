@@ -1,8 +1,6 @@
 import React from "react";
 import SingleFavorite from "./SingleFavorite";
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons'
-import { getToken } from '../../services/auth'
-
 
 class FavoritesBar extends React.Component {
 
