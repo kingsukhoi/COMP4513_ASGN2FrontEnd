@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getToken } from '../../services/auth';
-
+import { Affix } from 'antd';
 import NavBar from "./NavBar";
 import FavoritesBar from "./FavoritesBar";
 
@@ -23,8 +23,10 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <NavBar />
-      <FavoritesBar favorites={favorites}/>
+      <Affix offsetTop={0} >
+        <NavBar />
+        <FavoritesBar favorites={favorites}/>
+      </Affix>
       <main >{children}</main>
     </div>
   );

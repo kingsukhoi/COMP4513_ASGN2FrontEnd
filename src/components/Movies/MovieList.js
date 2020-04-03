@@ -4,7 +4,7 @@ import '../../style/Shrink.css'
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import movieFlex from './movieFlex.module.css'
 import { PageHeader, Button } from 'antd';
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons'
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 
 class MovieList extends React.Component {
     state = { selected:"title", reverse:true };
