@@ -10,15 +10,17 @@ const Layout = ({ children }) => {
   useEffect( () => {
     async function getFavorites() {
         const authUrl = makeAuthUrl(queryOptions.favorites);
-        
+        const movieUrl = makeAuthUrl(queryOptions.brief);
         let userFavorites = [];
-        let favoriteIds = []
-        let responce = await fetch(authUrl);
-        let retrievedFavorites = await responce.json();
-        favoriteIds.push(retrievedFavorites);
-        
-        favoriteIds.forEach(id => {
-          console.log(userFavorites.includes(id));
+        let response = await fetch(authUrl);
+        let retrievedFavorites = await response.json();
+      
+        let movieResponse = await fetch(movieUrl);
+        let retrievedMovies = await movieResponse.json();
+
+        retrievedFavorites.favorites.forEach(favId => {
+          console.log(favorites)
+          userFavorites.push(retrievedMovies.find(({id}) => id === favId));
         });
         setFavorites(userFavorites);
     }

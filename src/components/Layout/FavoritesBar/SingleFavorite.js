@@ -1,22 +1,21 @@
 import React from "react";
-//import "../Style/Favorite.css"
+import "../../../style/Favorite.css"
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faWindowClose} from "@fortawesome/free-solid-svg-icons";
 // import {FavoriteContext} from "../Context/FavoriteContex";
 
 class SingleFavorite extends React.Component {
-    posterUrl = "https://image.tmdb.org/t/p/w92/";
+    posterUrl = "https://image.tmdb.org/t/p/w92";
 
-    // state = {
-    //     hovering: false
-    // };
+    state = {
+        hovering: false
+    };
 
-    // toggleHover = (e) => {
-    //     this.setState(prevState => ({hovering: !prevState.hovering}));
-    // };
-    // handleRemove = (e) => {
-    //     this.context.rmFavorite(this.props.favorite.id);
-    // };
+    toggleHover = (e) => {
+        this.setState(prevState => ({hovering: !prevState.hovering}));
+    };
+    handleRemove = (e) => {
+    }
 
     render() {
         return (
@@ -29,7 +28,7 @@ class SingleFavorite extends React.Component {
                                                             className="fa-2x closeButton"/> : null} */}
                     <img
                         className="favImage"
-                        src={this.posterUrl + this.props.favorite.url}
+                        src={this.posterUrl + this.props.favorite.poster}
                         alt={this.props.favorite.alt}/>
                 </figure>
             </div>
