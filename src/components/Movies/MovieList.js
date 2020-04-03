@@ -29,7 +29,7 @@ class MovieList extends React.Component {
     }
 
     RenderMovies = () => {
-        if (this.props.movies.length !== 0) {
+        if (this.props.movies.length !== 0 || this.props.movies !== null) {
             return (
                
                 <TransitionGroup className="Movies">

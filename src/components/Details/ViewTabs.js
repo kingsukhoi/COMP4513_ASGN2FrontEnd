@@ -1,5 +1,5 @@
 import React from "react";
-//import {Link} from "react-router-dom";
+import {Link} from "gatsby";
 import SingleCrew from "./SingleCrew"
 import SingleCast from "./SingleCast"
 
@@ -98,7 +98,7 @@ class ViewTabs extends React.Component {
                     <ul>
                         <li id='Cast' className="is-active" onClick={this.tapHandler}><a>Cast</a></li>
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
-                        {/* <Link to="/Movies" path={"/Movies"} className="button is-1 is-right" style={{ margin: "0", }}>Back</Link> */}
+                        <Link to="/Movies" path={"app/movies"} className="button is-1 is-right" style={{ margin: "0", float: 'right'}}>Back</Link>
                     </ul>
                 </div>
                 <div className="table-container">

@@ -2,30 +2,16 @@ import React from 'react';
 import * as _ from "lodash";
 import MovieFilter from './MovieFilter/';
 import MovieList from './MovieList';
-import { getToken, logout } from '../../services/auth'
-import { getSearchParam } from '../../services/helper'
+import { logout, makeAuthUrl } from '../../services/auth'
+import { getSearchParam, queryOptions } from '../../services/helper'
 import Layout from '../Layout/Layout';
 import { CaretLeftOutlined, CaretRightOutlined, LoadingOutlined } from '@ant-design/icons'
-
-
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faCaretLeft, faCaretRight, faSync} from "@fortawesome/free-solid-svg-icons";
 
 export const defaultQueryParams = {
     title: "",
     minRating: 0,
     maxRating: 10
 };
-
-export const queryOptions = {
-    allMovies: "http://localhost:8080/api/brief", //"http://localhost:8080/api/movies",
-    brief: "http://localhost:8080/api/brief",
-    title: "http://localhost:8080/api/find/title/", //Just add :substring
-    findYear: "http://localhost:8080/api/find/year/", //just add :low, and :high
-    findRating: "http://localhost:8080/api/find/rating/", //just add :low, and :high
-    singleMovies: "http://localhost:8080/api/movies/" //just add :id
-};
-
 class Movies extends React.Component {
 
     constructor(props) {
@@ -44,8 +30,7 @@ class Movies extends React.Component {
 
 
     async getMovies(url) {
-        const token = getToken().token;
-        const authUrl = `${url}?auth_token=${token}`
+        const authUrl = makeAuthUrl(url);
         console.log(authUrl);
         try{
             const request = await fetch(authUrl);   

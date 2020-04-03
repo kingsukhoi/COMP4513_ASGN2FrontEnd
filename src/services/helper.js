@@ -25,3 +25,13 @@ export const addFavorite = async (favId) => {
 
     console.log(response);
 }
+
+export const queryOptions = {
+  allMovies: "http://localhost:8080/api/movies", //"http://localhost:8080/api/movies",
+  brief: "http://localhost:8080/api/brief",
+  title: "http://localhost:8080/api/find/title/", //Just add :substring
+  findYear: "http://localhost:8080/api/find/year/", //just add :low, and :high
+  findRating: "http://localhost:8080/api/find/rating/", //just add :low, and :high
+  singleMovie: "http://localhost:8080/api/movies/", //just add :id
+  favorites: "http://localhost:8080/api/favorites"
+};

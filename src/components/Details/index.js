@@ -4,9 +4,11 @@ import DetailsView from './DetailsView'
 import ViewTabs from './ViewTabs'
 import CastView from './CastView'
 import Layout from '../Layout/Layout'
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { LoadingOutlined } from '@ant-design/icons'
 import "../../style/Details.css"
-// import {faSync} from "@fortawesome/free-solid-svg-icons";
+import { makeAuthUrl } from '../../services/auth'
+import { queryOptions } from '../../services/helper'
+
 import {cloneDeep} from "lodash";
 
 class Details extends React.Component {
@@ -18,10 +20,11 @@ class Details extends React.Component {
     }
 
     async componentDidMount() {
-
-        const request = await fetch("https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=" + getSearchParam("id"));
+        const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
+        const request = await fetch(authUrl);
         let parsedMovie = await request.json();
-        this.setState({ movie: parsedMovie, active: 'Details', crew: null});
+        console.log(parsedMovie);
+        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null});
     }
 
     castButton(cast_id) {
@@ -37,7 +40,7 @@ class Details extends React.Component {
   
     render() {
          if (!this.state) {
-            return (<div  className="is-text-centered fa-10x fa-spin" >Hello</div>)
+            return (<div  className="is-text-centered fa-10x fa-spin" ><LoadingOutlined /></div>)
         } else {
             return (
                 <Layout>

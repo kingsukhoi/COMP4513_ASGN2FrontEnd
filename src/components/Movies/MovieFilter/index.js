@@ -1,6 +1,6 @@
 import React from 'react';
 import * as _ from "lodash";
-import {queryOptions} from "../index";
+import { queryOptions } from "../../../services/helper";
 import YearFilter from './YearFilter'
 import RatingsFilter from './RatingsFilter'
 import { Button, Input} from "antd"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Radio, InputNumber } from "antd"
 import { ArrowRightOutlined } from '@ant-design/icons'
-import {queryOptions} from "../index";
+import {queryOptions} from "../../../services/helper";
 import filterStyle from './filterStyle.module.css'
 
 

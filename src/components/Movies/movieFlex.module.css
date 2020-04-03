@@ -1,5 +1,6 @@
 .containerFlex{
     height: 750px;
     margin: 5px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

@@ -8,7 +8,6 @@ class FavoritesBar extends React.Component {
         expanded: true
     };
 
-
     renderList() {
         return this.props.favorites.map((favorite, index) => 
             <SingleFavorite favorite={favorite} key={favorite.id}/>

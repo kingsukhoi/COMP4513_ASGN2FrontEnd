@@ -44,3 +44,8 @@ export const logout = () => {
   setToken({});
   navigate('/app/login/');
 }
+
+export const makeAuthUrl = (url) => {
+    const authToken = getToken().token;
+    return `${url}?auth_token=${authToken}`
+};
