@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal } from 'antd'
-//import ticket from "../../../static/fa-ticket-alt.png";
 import {Link} from "gatsby";
 
 class NavBar extends React.Component {
@@ -14,7 +13,7 @@ class NavBar extends React.Component {
             <nav className="bd-navbar navbar has-shadow">
                 <div className="navbar-brand">
                     <span className="navbar-item fas fa-ticket-alt">
-                        <Link to={"/"} className="navbar-item fas fa-ticket-alt">
+                        <Link to={"app/"} className="navbar-item fas fa-ticket-alt">
                             <img src={"/fa-ticket-alt.png"} alt="fa-ticket-alt" />
                         </Link>Movie List
 

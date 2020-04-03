@@ -54,7 +54,7 @@ class Movies extends React.Component {
                 x.release_date = new Date(x.release_date);
                 return x;
             });
-            return parsedMovies = parsedMovies.sort((a, b) => (a.title > b.title) - (a.title < b.title));
+            return parsedMovies = parsedMovies.sort(this.sortTitle);
         }
         catch{
             console.error("aaaaa");
@@ -76,6 +76,54 @@ class Movies extends React.Component {
         newState.isLoading = false;
         this.setState(newState);
     }
+
+    //Method to be called by the movie list. 
+    //This method takes a sorting function and a boolean on whether the list should be reversed
+    sortMovies = (sortBy, reverse) => {
+        const sortedMovies = [...this.state.movies];
+        sortedMovies.sort( sortBy );
+        if ( reverse ) {
+            sortedMovies.reverse();
+        }
+        this.setState( { movies: sortedMovies });
+    }
+
+    //A set of sorting functions used by the movie list
+      // Either, sort by title, year, or rating
+    sortTitle(a,b) {
+        var nameA = a.title.toUpperCase();
+        var nameB = b.title.toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+            }
+        if (nameA > nameB) {
+            return 1;
+            }
+        return 0
+    }
+    sortYear(a,b){
+        var yearA = a.release_date;
+        var yearB = b.release_date;
+        if (yearA < yearB) {
+            return -1;
+            }
+        if (yearA > yearB) {
+            return 1;
+            }
+        return 0
+    }
+    sortRating(a,b){
+        var ratingA = a.ratings.average;
+        var ratingB = b.ratings.average;
+        if (ratingA < ratingB) {
+            return -1;
+            }
+        if (ratingA > ratingB) {
+            return 1;
+            }
+        return 0
+    }
+
 
     filterOnQuery = (query) => {
         let results = this.getMovies(query);
@@ -110,7 +158,13 @@ class Movies extends React.Component {
                     </div>
                     <div className="column has-text-centered">
                         {this.state.isLoading ? <LoadingOutlined /> :
-                            <MovieList movies={this.state.movies}/>
+                            <MovieList 
+                                movies={this.state.movies}
+                                sortTitle={ this.sortTitle }
+                                sortYear={ this.sortYear }
+                                sortRating={ this.sortRating }
+                                sortMovies={ this.sortMovies }
+                            />
                         }
                     </div>
                 </div>
