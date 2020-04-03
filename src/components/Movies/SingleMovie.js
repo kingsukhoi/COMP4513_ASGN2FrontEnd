@@ -1,9 +1,10 @@
 import React from 'react';
-import {Link} from "gatsby";
+import {Link, navigate} from "gatsby";
 import { HeartOutlined } from '@ant-design/icons'
+import { addFavorite } from '../../services/helper'
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import {faHeart} from '@fortawesome/free-solid-svg-icons';
-// import {FavoriteContext} from "../Context/FavoriteContex";
+// import {FavoriteContext} from "../../Context/FavoriteContex";
 
 class SingleMovie extends React.Component {
 
@@ -14,7 +15,7 @@ class SingleMovie extends React.Component {
     posterLink = "https://image.tmdb.org/t/p/w154/";
 
     onFavsClick = (e) => {
-        //this.context.addFavorite({url: this.props.imageUrl, id: this.props.id, alt: this.props.title});
+        addFavorite(this.props.id);
     };
 
     render() {
@@ -26,15 +27,15 @@ class SingleMovie extends React.Component {
                              aria-label="close"/>
                     </figure>
                 </td>
-                <td>{this.props.title}</td>
+                {/* <td><Link to={"app/details?id=" + this.props.id} path={this.props.id}>{this.props.title}</Link></td> */}
                 <td>{this.props.releaseDate}</td>
                 <td>{this.props.rating}</td>
                 <td className="">
                     <button onClick={this.onFavsClick} className="button is-1">
                     <HeartOutlined />
                     </button>
-                    <Link to={"/Movies/Details?id=" + this.props.id} path={this.props.id} className="button is-1"
-                          style={{margin: "0"}}>View</Link>
+                    <button onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}} className="button is-1"
+                          style={{margin: "0"}}>View</button>
                 </td>
             </tr>
 
@@ -42,7 +43,7 @@ class SingleMovie extends React.Component {
     }
 }
 
-//SingleMovie.contextType = FavoriteContext;
+// SingleMovie.contextType = FavoriteContext;
 
 
 export default SingleMovie;

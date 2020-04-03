@@ -7,21 +7,12 @@ import { getToken } from '../../services/auth'
 class FavoritesBar extends React.Component {
 
     state = {
-        expanded: true,
-        favorites: []
+        expanded: true
     };
-    async componentDidMount() {
-        const token = getToken();
-        const authUrl = `http://localhost:8080/api/favorites?auth_token=${token}`
-        
-        let userFavorites = await fetch(authUrl);
-        console.log(userFavorites);
-            
-        //this.setState({favorites: retrievedFavorites});
-    }
+
 
     renderList() {
-        return this.props.favorites.map((favorite, index) =>
+        return this.props.favorites.map((favorite, index) => 
             <SingleFavorite favorite={favorite} key={favorite.id}/>
         );
     }
@@ -37,7 +28,7 @@ class FavoritesBar extends React.Component {
                 <div className="has-background-grey navbar">
                     <div className="navbar-item">
                         <h2 className="has-text-grey-light">Your Favorites</h2>
-                        {/* {this.renderList()} */}
+                        {this.renderList()}
                     </div>
                 </div>
             );
