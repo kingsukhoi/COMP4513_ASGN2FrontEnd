@@ -48,8 +48,8 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <div className="level">
-                            <Button onClick={() => navigate("app/movies/")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
-                            <Button onClick={() => navigate("app/movies/?title=" + this.state.searchQuery)} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
+                            <Button onClick={() => navigate("/app/movies/")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
+                            <Button onClick={() => navigate("/app/movies/?title=" + this.state.searchQuery)} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
                         </div>
                     </Card>
                 </CSSTransition>
