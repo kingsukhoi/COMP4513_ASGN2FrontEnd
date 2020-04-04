@@ -64,9 +64,11 @@ const NavBar = () => {
                     </ul>
                     <p>API Endpoints:</p>
                     <ul>
-                        <li><a>By title: Jaws</a></li>
-                        <li></li>
-                        
+                        <li><Link to="/api/movies">Return All Movies</Link></li>
+                        <li><Link to="/api/movies/20">Movie By ID</Link></li>
+                        <li><Link to="/api/brief">Return All Movie Brief Data</Link></li>
+                        <li><Link to="/api/find/title/mino">Search by Title</Link></li>
+                        <li><Link to="/api/find/yeal/2000/2010">Search by Year</Link></li>
                     </ul>
 
                 </Modal>
