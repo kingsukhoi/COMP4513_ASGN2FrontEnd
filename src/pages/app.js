@@ -18,7 +18,6 @@ const App = () => {
         <PrivateRoute path="/details" component={Details}/>
         <AuthenticationController path="/login"/>
       </Router>
-
     )
   }
   export default App
