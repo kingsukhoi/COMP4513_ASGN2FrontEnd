@@ -1,4 +1,4 @@
-import { getToken } from './auth'
+import { makeAuthUrl } from './auth'
 
 export function getSearchParam(key) {
     let urlString = window.location.href;
@@ -6,13 +6,11 @@ export function getSearchParam(key) {
     return url.searchParams.get(key) ? url.searchParams.get(key) : ""; // truthy falsy
 }
 
-
 export const addFavorite = async (favId) => {
-    const token = getToken().token;
-    console.log(favId);
     var urlencoded = new URLSearchParams();
     urlencoded.append("favId", favId);
-    const authUrl = `http://localhost:8080/api/favorites?auth_token=${token}`
+
+    const authUrl = makeAuthUrl(queryOptions.favorites)
 
     const response = await fetch(authUrl, {
       method: 'POST',
@@ -22,8 +20,21 @@ export const addFavorite = async (favId) => {
       },
       body: urlencoded,
     });
+}
 
-    console.log(response);
+export const removeFavorite = async (favId) => {
+  var urlencoded = new URLSearchParams();
+  urlencoded.append("favId", favId);
+  const authUrl = makeAuthUrl(queryOptions.favorites)
+
+  const response = await fetch(authUrl, {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: urlencoded,
+  });
 }
 
 export const queryOptions = {

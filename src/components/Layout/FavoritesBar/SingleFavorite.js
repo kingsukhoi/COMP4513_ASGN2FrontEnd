@@ -1,8 +1,7 @@
 import React from "react";
 import "../../../style/Favorite.css"
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faWindowClose} from "@fortawesome/free-solid-svg-icons";
-// import {FavoriteContext} from "../Context/FavoriteContex";
+import { CloseCircleTwoTone } from '@ant-design/icons'
+
 
 class SingleFavorite extends React.Component {
     posterUrl = "https://image.tmdb.org/t/p/w92";
@@ -15,6 +14,7 @@ class SingleFavorite extends React.Component {
         this.setState(prevState => ({hovering: !prevState.hovering}));
     };
     handleRemove = (e) => {
+        this.props.removeFav(this.props.favorite.id);
     }
 
     render() {
@@ -24,8 +24,10 @@ class SingleFavorite extends React.Component {
                         onMouseEnter={this.toggleHover}
                         onMouseLeave={this.toggleHover}
                 >
-                    {/* {this.state.hovering ? <FontAwesomeIcon onClick={this.handleRemove} icon={faWindowClose}
-                                                            className="fa-2x closeButton"/> : null} */}
+                    {/* Needs a good colour use  twoToneColor="#eb2f96" */}
+                    {this.state.hovering ? <CloseCircleTwoTone onClick={this.handleRemove} 
+                                                            className="fa-2x closeButton"
+                                                            /> : null}
                     <img
                         className="favImage"
                         src={this.posterUrl + this.props.favorite.poster}
@@ -35,7 +37,5 @@ class SingleFavorite extends React.Component {
         )
     }
 }
-
-//SingleFavorite.contextType = FavoriteContext;
 
 export default SingleFavorite;

@@ -3,7 +3,7 @@ import { Affix } from 'antd';
 import NavBar from "./NavBar";
 import FavoritesBar from "./FavoritesBar";
 import { makeAuthUrl } from '../../services/auth'
-import { queryOptions } from '../../services/helper'
+import { queryOptions, removeFavorite } from '../../services/helper'
 
 const Layout = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
@@ -19,7 +19,6 @@ const Layout = ({ children }) => {
         let retrievedMovies = await movieResponse.json();
 
         retrievedFavorites.favorites.forEach(favId => {
-          console.log(favorites)
           userFavorites.push(retrievedMovies.find(({id}) => id === favId));
         });
         setFavorites(userFavorites);
@@ -27,11 +26,17 @@ const Layout = ({ children }) => {
     getFavorites();
   }, []);
 
+  const removeFav = (favId) => {
+    removeFavorite(favId);
+    let filterFav = favorites.filter(({id}) => id !== favId);
+    setFavorites(filterFav);
+  };
+
   return (
     <div>
       <Affix offsetTop={0} >
         <NavBar />
-        <FavoritesBar favorites={favorites}/>
+        <FavoritesBar favorites={favorites} removeFav={removeFav} />
       </Affix>
       <main >{children}</main>
     </div>
