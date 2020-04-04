@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { navigate } from "gatsby"
+import { navigate } from "@reach/router"
 import { isLoggedIn } from "../services/auth"
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
