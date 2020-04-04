@@ -10,9 +10,6 @@ import {  Card, Button, Input, Form, Alert} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 
-import 'react-bulma-components/dist/react-bulma-components.min.css'
-import { Hero } from 'react-bulma-components'
-
 
 
 class Home extends React.Component {
@@ -66,7 +63,7 @@ class Home extends React.Component {
     renderNormal() {
         return (
             <div className="is-fullheight hero" >
-            <div className="column is-4 is-offset-4" style={this.style}>
+            <div className="col-4 is-offset-4" style={this.style}>
                 <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear >
                     <Card className="box searchBox">
                         <h3 className="title has-text-black has-text-centered">Your Movie List</h3>

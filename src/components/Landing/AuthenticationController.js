@@ -40,12 +40,12 @@ const AuthenticationController = () => {
     }
 
     const divStyle = {
-        "background-color": 'aliceblue',
+        "backgroundColor": 'aliceblue',
     };
 
     return (
-        <div id="login-container" style={divStyle}>
-            <Card className="center column is-4 is-offset-4">
+        <div id="login-container Col" style={divStyle}>
+            <Card className="center col-4 is-offset-4">
 
                 <Tabs defaultActiveKey="1" onChange={callback}>
                     <TabPane tab="Login" key="1">
