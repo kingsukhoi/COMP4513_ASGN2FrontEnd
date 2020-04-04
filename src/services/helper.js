@@ -12,7 +12,7 @@ export const addFavorite = async (favId) => {
     console.log(favId);
     var urlencoded = new URLSearchParams();
     urlencoded.append("favId", favId);
-    const authUrl = `http://localhost:8080/api/favorites?auth_token=${token}`
+    const authUrl = `https://api-asgn2.farsos.ca/api/favorites?auth_token=${token}`
 
     const response = await fetch(authUrl, {
       method: 'POST',
@@ -27,11 +27,11 @@ export const addFavorite = async (favId) => {
 }
 
 export const queryOptions = {
-  allMovies: "http://localhost:8080/api/movies", //"http://localhost:8080/api/movies",
-  brief: "http://localhost:8080/api/brief",
-  title: "http://localhost:8080/api/find/title/", //Just add :substring
-  findYear: "http://localhost:8080/api/find/year/", //just add :low, and :high
-  findRating: "http://localhost:8080/api/find/rating/", //just add :low, and :high
-  singleMovie: "http://localhost:8080/api/movies/", //just add :id
-  favorites: "http://localhost:8080/api/favorites"
+  allMovies: "https://api-asgn2.farsos.ca/api/movies", //"https://api-asgn2.farsos.ca/api/movies",
+  brief: "https://api-asgn2.farsos.ca/api/brief",
+  title: "https://api-asgn2.farsos.ca/api/find/title/", //Just add :substring
+  findYear: "https://api-asgn2.farsos.ca/api/find/year/", //just add :low, and :high
+  findRating: "https://api-asgn2.farsos.ca/api/find/rating/", //just add :low, and :high
+  singleMovie: "https://api-asgn2.farsos.ca/api/movies/", //just add :id
+  favorites: "https://api-asgn2.farsos.ca/api/favorites"
 };
