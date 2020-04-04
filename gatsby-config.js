@@ -11,6 +11,12 @@ module.exports = {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/app/*`] },
     },
-    'gatsby-plugin-antd'
+    'gatsby-plugin-antd',
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        mergeCachingHeaders: false
+      }
+    }
   ]
 };
