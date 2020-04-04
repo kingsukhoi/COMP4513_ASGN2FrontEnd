@@ -12,7 +12,7 @@ import Details from '../components/Details'
 const App = () => {
     return (
       <Router basepath="/app">
-        <PrivateRoute restricted={false} path="/home" component={Home}></PrivateRoute >
+        <PrivateRoute path="/home" component={Home}></PrivateRoute >
         <PrivateRoute path="/movies" component={Movies}></PrivateRoute>
         <PrivateRoute path="/details" component={Details}></PrivateRoute>
         <AuthenticationController path="/login"/>
