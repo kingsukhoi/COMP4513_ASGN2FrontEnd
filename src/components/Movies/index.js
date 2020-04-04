@@ -50,7 +50,7 @@ class Movies extends React.Component {
 
     async componentDidMount() {
         const newState = await _.cloneDeep(this.state); 
-        let url = queryOptions.allMovies;
+        let url = queryOptions.brief;
         let params = this.state.searchParams.title;
         if (params !== "") {
             url = `${queryOptions.title}${params}`
