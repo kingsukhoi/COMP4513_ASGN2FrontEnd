@@ -11,9 +11,9 @@ const setToken = token =>
 
 export const handleLogin = async (values) => {
     try {
-        const response = await fetch(`http://localhost:8080/api/login`, {
+        const response = await fetch(`https://api-asgn2.farsos.ca/api/login`, {
           method: 'POST',
-          // mode: 'cors',
+          mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
           },
