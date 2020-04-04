@@ -6,7 +6,7 @@ import { logout, makeAuthUrl } from '../../services/auth'
 import { getSearchParam, queryOptions } from '../../services/helper'
 import Layout from '../Layout/Layout';
 import { CaretLeftOutlined, CaretRightOutlined, LoadingOutlined } from '@ant-design/icons'
-
+import "react-bulma-components/dist/react-bulma-components.min.css"
 export const defaultQueryParams = {
     title: "",
     minRating: 0,
