@@ -14,13 +14,18 @@ const Layout = ({ children }) => {
         let userFavorites = [];
         let response = await fetch(authUrl);
         let retrievedFavorites = await response.json();
-      
         let movieResponse = await fetch(movieUrl);
         let retrievedMovies = await movieResponse.json();
 
         retrievedFavorites.favorites.forEach(favId => {
-          userFavorites.push(retrievedMovies.find(({id}) => id === favId));
+          let fav = retrievedMovies.find(({id}) => id === favId);
+          
+          if (typeof fav !== 'undefined') {
+            userFavorites.push(fav);   
+          }
+         
         });
+        console.log(userFavorites);
         setFavorites(userFavorites);
     }
     getFavorites();
