@@ -1,5 +1,5 @@
 import React from "react"
-import { Router,Route, } from "@reach/router"
+import { Router} from "@reach/router"
 import PrivateRoute from "../components/PrivateRoute"
 
 import AuthenticationController from "../components/Landing/AuthenticationController"
@@ -13,9 +13,9 @@ import '../style/Global.css'
 const App = () => {
     return (
       <Router basepath="/app">
-        <PrivateRoute path="/" component={Home}></PrivateRoute >
-        <PrivateRoute path="/movies" component={Movies}></PrivateRoute>
-        <PrivateRoute path="/details" component={Details}></PrivateRoute>
+        <PrivateRoute path="/" component={Home}/>
+        <PrivateRoute path="/movies" component={Movies}/>
+        <PrivateRoute path="/details" component={Details}/>
         <AuthenticationController path="/login"/>
       </Router>
 
