@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "gatsby";
 import SingleCrew from "./SingleCrew"
 import SingleCast from "./SingleCast"
+import { Tabs } from 'antd'
 
 class ViewTabs extends React.Component {
 
@@ -58,6 +59,7 @@ class ViewTabs extends React.Component {
 
 
     renderCast(cast) {
+        
         return (
             
             <table className="table is-fullwidth" style={{ overflowX: "auto" }}>
@@ -91,10 +93,11 @@ class ViewTabs extends React.Component {
     }
 
     render() {
+        const { TabPane } = Tabs;
         const {cast, crew} = this.props;
         return (
             <div id="CastAndCrew" className="column container box">
-                <div className="tabs">
+                {/* <div className="tabs">
                     <ul>
                         <li id='Cast' className="is-active" onClick={this.tapHandler}><a>Cast</a></li>
                         <li id='Crew' className="" onClick={this.tapHandler}><a>Crew</a></li>
@@ -105,7 +108,42 @@ class ViewTabs extends React.Component {
 
                     {this.state.active === "Cast" ? this.renderCast(cast) : this.renderCrew(crew)}
 
-                </div>
+                </div> */}
+                <Link to="app/movies" path={"app/movies"} className="button is-1 is-right" style={{ margin: "0", float: 'right'}}>Back</Link>
+                <Tabs type="card">
+                    <TabPane tab="Cast" key="1">
+                    {cast != null ? cast.map((cast) => {
+                        return (
+                            <SingleCast
+                                key={cast.credit_id}
+                                id={cast.id}
+                                cast_id={cast.cast_id}
+                                character={cast.character}
+                                credit_id={cast.credit_id}
+                                gender={cast.gender}
+                                name={cast.name}
+                                order={cast.order}
+                                castButton={this.props.castButton}
+                            />
+                        )
+                    }) : <tr>No Cast Found</tr>}
+   
+                    </TabPane>
+                    <TabPane tab="Crew" key="2">
+                    {crew != null ? crew.map((crew) => {
+                            return (
+                                <SingleCrew
+                                    key={crew.credit_id}
+                                    id={crew.id}
+                                    credit_id={crew.credit_id}
+                                    department={crew.department}
+                                    job={crew.job}
+                                    name={crew.name}
+                                />
+                            )
+                        }): <tr>No Crew Found</tr>}
+                    </TabPane>
+                </Tabs>
 
             </div>
         )
