@@ -1,5 +1,6 @@
 import React from "react";
 import {addFavorite} from '../../services/helper'
+import { Tag } from 'antd'
 
 
 function DetailsView(props) {
@@ -7,9 +8,9 @@ function DetailsView(props) {
     function RenderCountries() {
         if(props.contries !== null) { 
         return props.countries.map(x => {
-            return <span key={x.iso_3166_1} className="tag">{x.name}</span>
+            return <Tag key={x.iso_3166_1} >{x.name}</Tag>
         })} else {
-            return <span className="tag">No Countries</span>
+            return <Tag >No Countries</Tag>
         }
     }
 
@@ -17,7 +18,7 @@ function DetailsView(props) {
         if(props.companies !== null) { 
             return props.companies.map(x => {
                 console.log(x);
-                return <span key={x.id} className="tag">{x.name}</span>
+                return <Tag key={x.id} >{x.name}</Tag>
             })
         }else {
             return <span className="tag">No Companies</span>
