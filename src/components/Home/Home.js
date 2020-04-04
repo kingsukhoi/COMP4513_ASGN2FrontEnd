@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import { Link } from "gatsby"
 import { navigate } from "@reach/router"
 import { CSSTransition } from 'react-transition-group';
-import "../style/Home.css";
+import "../../style/Home.css";
 
 
 import {  Card, Button, Input, Form, Alert} from 'antd';
