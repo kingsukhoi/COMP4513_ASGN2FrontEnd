@@ -6,9 +6,22 @@
 .login-form {
     max-width: 300px;
     margin: auto;
-    padding-top: 35vh;
+    
     
 }
 .login-form-button {
     width: 100%;
 }
+
+#login-container {
+    height: 100vh;
+    padding-top: 35vh;
+}
+
+/* .center{
+    margin-top: 33%;
+} */
+
+/* .box {
+    height: 50%;
+}  */

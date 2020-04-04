@@ -45,16 +45,17 @@ const AuthenticationController = () => {
 
     return (
         <div id="login-container" style={divStyle}>
+            <Card className="center column is-4 is-offset-4">
 
-            <Tabs defaultActiveKey="1" onChange={callback}>
-                <TabPane tab="Login" key="1">
-                    <Login />
-                </TabPane>
-                <TabPane tab="Signup" key="2">
-                    <Register />
-                </TabPane>
-            </Tabs>
-
+                <Tabs defaultActiveKey="1" onChange={callback}>
+                    <TabPane tab="Login" key="1">
+                        <Login />
+                    </TabPane>
+                    <TabPane tab="Signup" key="2">
+                        <Register />
+                    </TabPane>
+                </Tabs>
+            </Card>
 
         </div>
     )

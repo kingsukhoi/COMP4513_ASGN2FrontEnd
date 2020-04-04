@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-      <Card>
+     <div>
         <Form
           name="login"
           className="login-form"
@@ -78,9 +78,7 @@ const Login = () => {
           </Button>
           </Form.Item>
         </Form>
-        {invalidLogin}
-      </Card>
-
+        {invalidLogin}</div>
   )
 };
 
