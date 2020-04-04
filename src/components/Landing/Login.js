@@ -30,55 +30,52 @@ const Login = () => {
       });
   }
 
-  const divStyle = {
-    "background-color": 'aliceblue',
-  };
+    return (
+    <div id="login-container">
+            <Form
+              name="login"
+              className="login-form"
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={postData}
+            >
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your username.',
+                  }
+                ]}
+              >
+                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              </Form.Item>
 
-  return (
-     <div>
-        <Form
-          name="login"
-          className="login-form"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={postData}
-        >
-          <Form.Item
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your username.',
-              }
-            ]}
-          >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-          </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password.',
+                  }
+                ]}
+              >
+                <Input
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Item>
 
-          <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password.',
-              }
-            ]}
-          >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Item>
-
-          <Form.Item >
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
+              <Form.Item >
+                <Button type="primary" htmlType="submit" className="login-form-button">
+                  Log in
           </Button>
-          </Form.Item>
-        </Form>
-        {invalidLogin}</div>
+              </Form.Item>
+            </Form>
+            {invalidLogin}
+    </div>
   )
 };
 

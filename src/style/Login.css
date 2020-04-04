@@ -14,14 +14,9 @@
 }
 
 #login-container {
-    height: 100vh;
     padding-top: 35vh;
 }
 
-/* .center{
-    margin-top: 33%;
-} */
-
-/* .box {
-    height: 50%;
-}  */
+.center{
+    margin-top: 20%;
+}
