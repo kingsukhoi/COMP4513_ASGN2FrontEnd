@@ -4,13 +4,7 @@ import { Link } from "gatsby"
 import { navigate } from "@reach/router"
 import { CSSTransition } from 'react-transition-group';
 import "../../style/Home.css";
-
-
 import {  Card, Button, Input, Form, Alert} from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
-
-
 
 class Home extends React.Component {
 
@@ -18,14 +12,7 @@ class Home extends React.Component {
         super(props);
         this.state = { searchQuery: "", searchEnter: null, transition: true };
     }
-    onChange = (e) => {
-        const currElem = e.target;
-        const key = currElem.getAttribute('name');
-        const newState = _.cloneDeep(this.state);
-        newState[key] = currElem.value;
-        this.setState(newState);
-    };
-
+    
     style = {
         paddingTop: "35vh"
     };
@@ -48,19 +35,6 @@ class Home extends React.Component {
     }
 
     render() {
-        switch (this.state.searchEnter) {
-
-            case "show":
-                return (<Link push to={"app/movies/"} />);
-            case "search":
-                return (<Link push to={"app/movies/?title=" + this.state.searchQuery} />)
-            default:
-                return this.renderNormal();
-        }
-    }
-
-
-    renderNormal() {
         return (
             <div className="is-fullheight hero" >
             <div className="col-4 is-offset-4" style={this.style}>
@@ -74,8 +48,8 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <div className="level">
-                            <Button onClick={() => this.exit("show")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
-                            <Button onClick={() => this.exit("search")} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
+                            <Button onClick={() => navigate("app/movies/")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
+                            <Button onClick={() => navigate("app/movies/?title=" + this.state.searchQuery)} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
                         </div>
                     </Card>
                 </CSSTransition>
@@ -92,7 +66,6 @@ class Home extends React.Component {
         </div>
         )
     }
-
 }
 
 export default Home;
