@@ -34,6 +34,14 @@ class Home extends React.Component {
         this.setState(newState);
     }
 
+    onChange = (e) => {
+        const currElem = e.target;
+        const key = currElem.getAttribute('name');
+        const newState = _.cloneDeep(this.state);
+        newState[key] = currElem.value;
+        this.setState(newState);
+    };
+
     render() {
         return (
             <div className="is-fullheight hero" >
@@ -49,7 +57,7 @@ class Home extends React.Component {
                         </div>
                         <div className="level">
                             <Button onClick={() => navigate("/app/movies/")} className="level-item has-text-centered button is-block is-info">Show All Movies</Button>
-                            <Button onClick={() => navigate("/app/movies/?title=" + this.state.searchQuery)} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
+                            <Button onClick={() => navigate(`/app/movies/?title=${this.state.searchQuery}`)} className="level-item has-text-centered button is-block is-info">Search Movies</Button>
                         </div>
                     </Card>
                 </CSSTransition>
