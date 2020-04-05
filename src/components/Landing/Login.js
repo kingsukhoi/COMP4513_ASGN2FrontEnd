@@ -10,7 +10,7 @@ import { handleLogin, isLoggedIn } from '../../services/auth'
 const Login = () => {
   console.log(isLoggedIn());
   if (isLoggedIn()) {
-    navigate("/app/");
+    navigate("/app/movies");
   }
   const [validLogin, setValidLogin] = useState(true);
   const invalidLogin = validLogin ? "" : <Alert
