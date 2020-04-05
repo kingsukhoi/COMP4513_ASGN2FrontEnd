@@ -68,10 +68,10 @@ class ViewTabs extends React.Component {
                 <Link to="app/movies" path={"app/movies"} className="button is-1 is-right" style={{ margin: "0", float: 'right'}}>Back</Link>
                 <Tabs type="card">
                     <TabPane tab="Cast" key="1">
-                        {cast != null ? <Table columns={castColumns} dataSource={this.generateCastTable(cast)} /> : <div> No Cast data availible </div>} 
+                        {cast !== null ? <Table columns={castColumns} dataSource={this.generateCastTable(cast)} /> : <div> No Cast data availible </div>} 
                     </TabPane>
                     <TabPane tab="Crew" key="2">
-                        {crew != null ? <Table columns={crewColumns} dataSource={this.generateCrewTable(crew)} /> : <div> No Crew data availible </div>}  
+                        {crew !== null ? <Table columns={crewColumns} dataSource={this.generateCrewTable(crew)} /> : <div> No Crew data availible </div>}  
                     </TabPane>
                 </Tabs>
                 

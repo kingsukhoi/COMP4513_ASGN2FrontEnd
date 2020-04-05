@@ -1,29 +1,8 @@
 import React from "react";
+import DetailsStub from './DetailsStub'
 import {addFavorite} from '../../services/helper'
-import { Tag } from 'antd'
-
 
 function DetailsView(props) {
-    
-    function RenderCountries() {
-        if(props.contries !== null) { 
-        return props.countries.map(x => {
-            return <Tag key={x.iso_3166_1} >{x.name}</Tag>
-        })} else {
-            return <Tag >No Countries</Tag>
-        }
-    }
-
-    function RenderCompanies() {
-        if(props.companies !== null) { 
-            return props.companies.map(x => {
-                console.log(x);
-                return <Tag key={x.id} >{x.name}</Tag>
-            })
-        }else {
-            return <span className="tag">No Companies</span>
-        }
-    }
 
     const addToFavorite = () => {
         addFavorite(props.id);
@@ -51,22 +30,10 @@ function DetailsView(props) {
                             <div className="title">{props.title}</div>
                             <div className="tile">{props.details.overview}</div>
                         </div>
-
-                        <div className="columns">
-                            <div className="column">
-                                <div className="">Countries</div>
-                                <div className="tags">
-                                    {RenderCountries()}
-                                </div>
-                            </div>
-
-                            <div className="column">
-                                <div className="">Companies</div>
-                                <div className="tags">
-                                    {RenderCompanies()}
-                                </div>
-                            </div>
-                        </div>
+                        <DetailsStub title="Countries" data={props.countries}/>
+                        <DetailsStub title="Companies" data={props.companies}/>
+                        <DetailsStub title="Genres" data={props.details.genres}/>
+                        <DetailsStub title="Keywords" data={props.details.keywords}/>
                     </div>
 
                 </div>
