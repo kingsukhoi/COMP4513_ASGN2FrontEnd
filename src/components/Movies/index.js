@@ -23,17 +23,23 @@ class Movies extends React.Component {
             movies: [],
             searchParams: searchParams,
             isLoading: true,
-            movieFilterExpand: true
+            movieFilterExpand: true,
+            favUpdate: null
         }
     }
-    
+
+
+    newFav = (newFav) => {
+        console.log("newFav");
+        this.setState({favUpdate: newFav});
+      };
 
 
     async getMovies(url) {
         const authUrl = makeAuthUrl(url);
         console.log(authUrl);
-        try{
-            const request = await fetch(authUrl);   
+        try {
+            const request = await fetch(authUrl);
             let parsedMovies = await request.json();
             parsedMovies.map(x => {
                 x.release_date = new Date(x.release_date);
@@ -49,7 +55,7 @@ class Movies extends React.Component {
     }
 
     async componentDidMount() {
-        const newState = await _.cloneDeep(this.state); 
+        const newState = await _.cloneDeep(this.state);
         let url = queryOptions.brief;
         let params = this.state.searchParams.title;
         if (params !== "") {
@@ -57,7 +63,7 @@ class Movies extends React.Component {
         }
         let parsedMovies = await this.getMovies(url);
         newState.movies = parsedMovies;
-            
+
         newState.isLoading = false;
         this.setState(newState);
     }
@@ -66,93 +72,94 @@ class Movies extends React.Component {
     //This method takes a sorting function and a boolean on whether the list should be reversed
     sortMovies = (sortBy, reverse) => {
         const sortedMovies = [...this.state.movies];
-        sortedMovies.sort( sortBy );
-        if ( reverse ) {
+        sortedMovies.sort(sortBy);
+        if (reverse) {
             sortedMovies.reverse();
         }
-        this.setState( { movies: sortedMovies });
+        this.setState({ movies: sortedMovies });
     }
 
     //A set of sorting functions used by the movie list
-      // Either, sort by title, year, or rating
-    sortTitle(a,b) {
+    // Either, sort by title, year, or rating
+    sortTitle(a, b) {
         var nameA = a.title.toUpperCase();
         var nameB = b.title.toUpperCase();
         if (nameA < nameB) {
             return -1;
-            }
+        }
         if (nameA > nameB) {
             return 1;
-            }
+        }
         return 0
     }
-    sortYear(a,b){
+    sortYear(a, b) {
         var yearA = a.release_date;
         var yearB = b.release_date;
         if (yearA < yearB) {
             return -1;
-            }
+        }
         if (yearA > yearB) {
             return 1;
-            }
+        }
         return 0
     }
-    sortRating(a,b){
+    sortRating(a, b) {
         var ratingA = a.ratings.average;
         var ratingB = b.ratings.average;
         if (ratingA < ratingB) {
             return -1;
-            }
+        }
         if (ratingA > ratingB) {
             return 1;
-            }
+        }
         return 0
     }
 
 
     filterOnQuery = (query) => {
         let results = this.getMovies(query);
-        results.then( (val) => {
-            this.setState({movies: val});
+        results.then((val) => {
+            this.setState({ movies: val });
         });
         console.log("After");
 
     };
     toggleClose = (e) => {
-        this.setState({...this.state, movieFilterExpand: !this.state.movieFilterExpand})
+        this.setState({ ...this.state, movieFilterExpand: !this.state.movieFilterExpand })
     };
 
     generateStyle() {
-        return this.state.movieFilterExpand ? null : {marginLeft: "1em"}
+        return this.state.movieFilterExpand ? null : { marginLeft: "1em" }
     }
 
     render() {
-        let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined/> : <CaretRightOutlined />;
+        let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined /> : <CaretRightOutlined />;
         return (
             <React.Fragment>
-                <Layout>
-                <div className="columns">
-                    {this.state.movieFilterExpand ? <MovieFilter
-                        updateQuery={this.updateQuery}
-                        searchParams={this.state.searchParams}
-                        onSearch={this.filterOnQuery}
-                    /> : null}
+                <Layout favUpdate={this.state.favUpdate}>
+                    <div className="columns">
+                        {this.state.movieFilterExpand ? <MovieFilter
+                            updateQuery={this.updateQuery}
+                            searchParams={this.state.searchParams}
+                            onSearch={this.filterOnQuery}
+                        /> : null}
 
-                    <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
-                        {arrow}
+                        <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
+                            {arrow}
+                        </div>
+                        <div className="column has-text-centered">
+                            {this.state.isLoading ? <LoadingOutlined /> :
+                                <MovieList
+                                    movies={this.state.movies}
+                                    sortTitle={this.sortTitle}
+                                    sortYear={this.sortYear}
+                                    sortRating={this.sortRating}
+                                    sortMovies={this.sortMovies}
+                                    newFav={this.newFav}
+                                />
+                            }
+                        </div>
                     </div>
-                    <div className="column has-text-centered">
-                        {this.state.isLoading ? <LoadingOutlined /> :
-                            <MovieList 
-                                movies={this.state.movies}
-                                sortTitle={ this.sortTitle }
-                                sortYear={ this.sortYear }
-                                sortRating={ this.sortRating }
-                                sortMovies={ this.sortMovies }
-                            />
-                        }
-                    </div>
-                </div>
                 </Layout>
             </React.Fragment>
         )

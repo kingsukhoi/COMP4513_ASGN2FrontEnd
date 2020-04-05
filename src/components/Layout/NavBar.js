@@ -45,7 +45,7 @@ useEffect(() => {
     <nav className="bd-navbar navbar has-shadow">
       <div className="navbar-brand">
         <span className="navbar-item fas fa-ticket-alt">
-          <Link to={"app/"} className="navbar-item fas fa-ticket-alt">
+          <Link to={"app/movies"} className="navbar-item fas fa-ticket-alt">
             <img src={"/fa-ticket-alt.png"} alt="fa-ticket-alt" />
           </Link>
           Movie List

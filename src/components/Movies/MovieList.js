@@ -38,7 +38,6 @@ class MovieList extends React.Component {
                             <CSSTransition key={this.props.id} enter exit mountOnEnter unmountOnExit timeout={1501}
                                            classNames="singleMovie">
                                 <SingleMovie
-                                    addFavorite={this.props.addFavorite}
                                     remove={this.props.remove}
                                     key={x.id}
                             id={x.id}
@@ -47,6 +46,7 @@ class MovieList extends React.Component {
                             rating={x.ratings.average}
                             imageUrl={x.poster}
                             show={true}
+                            newFav={this.props.newFav}
                         />
                         </CSSTransition>  
                     )

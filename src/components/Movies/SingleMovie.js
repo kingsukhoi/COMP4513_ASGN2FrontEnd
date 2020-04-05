@@ -10,6 +10,8 @@ class SingleMovie extends React.Component {
 
     onFavsClick = (e) => {
         addFavorite(this.props.id);
+        this.props.newFav(this.props);
+        console.log("favorite");
     };
 
     render() {
