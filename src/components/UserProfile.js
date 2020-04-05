@@ -1,37 +1,31 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
-
-import { Card, Alert } from "antd"
+import { Card, Avatar } from "antd"
+const {Meta} =Card
 
 class UserProfile extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
 
-  // First, last, city, country, date joined, picture
-  // picture is cover
-  //first last is title
-  // cannot expand description, will have to add info as children to card
-  //need to pass in user blob
   render() {
+    // date.parse then date.toDateString
+    let date = this.props.user.membership.date_joined;
+    date = Date.parse(date)
+    date = new Date(date).toDateString();
     return (
       <Card
-        title="userCard"
-        cover={<img alt="user image" src={`${user.picture.large}`} />}
+        title="User Profile"
+        cover={<img alt="user image" src={`${this.props.user.picture.large}`} />}
       >
         <Meta
-          avatar={<Avatar src={`${user.picture.thumbnail}`} />}
-          title={`${user.details.firstname} ${user.details.lastname}`}
+          avatar={<Avatar src={`${this.props.user.picture.thumbnail}`} />}
+          title={`${this.props.user.details.firstname} ${this.props.user.details.lastname}`}
         />
         <div className="details">
           <p>
-            <span>Location</span>
-            {`${user.details.city}, ${user.details.country}`}
+            <span>Location: </span>
+            {`${this.props.user.details.city}, ${this.props.user.details.country}`}
           </p>
           <p>
-            <span>Date Joined</span>
-            {`${user.membership.date_joined}`}
+            <span>Date Joined: </span>
+            {`${date}`}
           </p>
         </div>
       </Card>

@@ -45,5 +45,6 @@ export const queryOptions = {
   findYear: "https://api-asgn2.farsos.ca/api/find/year/", //just add :low, and :high
   findRating: "https://api-asgn2.farsos.ca/api/find/rating/", //just add :low, and :high
   singleMovie: "https://api-asgn2.farsos.ca/api/movies/", //just add :id
-  favorites: "https://api-asgn2.farsos.ca/api/favorites"
+  favorites: "https://api-asgn2.farsos.ca/api/favorites",
+  user:"https://api-asgn2.farsos.ca/api/user"
 };
