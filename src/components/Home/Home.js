@@ -45,7 +45,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="is-fullheight hero" >
-            <div className="col-4 is-offset-4" style={this.style}>
+            <div className="column is-6 is-offset-3" style={this.style}>
                 <CSSTransition exit={true} in={this.state.transition} classNames="searchBox" timeout={1500} appear >
                     <Card className="box searchBox">
                         <h3 className="title has-text-black has-text-centered">Your Movie List</h3>
