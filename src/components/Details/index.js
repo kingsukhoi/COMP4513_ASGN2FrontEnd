@@ -5,7 +5,6 @@ import ViewTabs from './ViewTabs'
 import CastView from './CastView'
 import Layout from '../Layout/Layout'
 import { LoadingOutlined } from '@ant-design/icons'
-import "../../style/Details.css"
 import { makeAuthUrl } from '../../services/auth'
 import { queryOptions } from '../../services/helper'
 

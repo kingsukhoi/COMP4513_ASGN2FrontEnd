@@ -1,7 +1,5 @@
 import React from "react";
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import "../Style/Details.css"
-// import {faSync} from "@fortawesome/free-solid-svg-icons";
+import { LoadingOutlined } from '@ant-design/icons'
 
 class CastView extends React.Component {
 
@@ -43,8 +41,7 @@ class CastView extends React.Component {
 		// https://www.themoviedb.org/movie/imdb_id 
 		// https://www.imdb.com/title/imdb_id,
 		if (this.state.person === null) {
-            return (<div>Hello</div>)
-			// return (<FontAwesomeIcon icon={faSync} className="is-text-centered fa-10x fa-spin"/>)
+			return (<LoadingOutlined className="is-text-centered fa-10x fa-spin"/>)
 		} else {
 			const {name, imdb_id, biography, profile_path, birthday, place_of_birth} = this.state.person;
 			const birthdayObject = new Date(birthday);
@@ -52,15 +49,19 @@ class CastView extends React.Component {
 			return (
 				<div className="CastView">
 					<div className="card column">
+					
 						<div className="card-image">
 							<figure className="image">
 								<img src={this.photoApi + profile_path} alt={name}
 									 style={{margin: "auto", height: "50vh", width: "auto"}}/>
 							</figure>
 						</div>
+
 						<div className="card-content">
 							<div className="media">
+								
 								<div className="media-left">
+								
 								</div>
 								<div className="media-content">
 									<h4 className="title is-4">{name}</h4>
@@ -72,10 +73,10 @@ class CastView extends React.Component {
 							<div className="media-content">
 								{biography}
 							</div>
-							<a onClick={() => this.props.castButton()} className="button is-1 is-danger is-pulled-right"
+						
+						<a onClick={() => this.props.castButton()} className="button is-1 is-danger is-pulled-right"
 							   style={{margin: "0"}}>Close</a>
-						</div>
-
+							   </div>
 					</div>
 				</div>);
 		}
