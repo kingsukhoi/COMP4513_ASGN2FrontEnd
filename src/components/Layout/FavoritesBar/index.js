@@ -6,13 +6,12 @@ class FavoritesBar extends React.Component {
 
     state = {
         expanded: true,
-        favUpdate: this.props.favUpdate
     };
 
     renderList() {
         console.log("list render");
         return this.props.favorites.map((favorite, index) => 
-            <SingleFavorite favorite={favorite} removeFav={this.props.removeFav}key={favorite.id}/>
+            <SingleFavorite favorite={favorite} removeFav={this.props.removeFav} key={favorite.id}/>
         );
     }
 

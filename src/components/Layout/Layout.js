@@ -10,7 +10,7 @@ const Layout = ({favUpdate,children}) => {
 
   const update = () => {
     if(favUpdate !== null){
-      if(!favorites.includes(favUpdate)){
+      if(!favorites.find(({id}) => id === favUpdate.id) ){
         favorites.push(favUpdate);
       }
     }
