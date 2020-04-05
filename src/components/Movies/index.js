@@ -18,7 +18,7 @@ class Movies extends React.Component {
         super(props);
         const searchParams = _.cloneDeep(defaultQueryParams);
         searchParams.title = getSearchParam("title");
-
+        this.clearFav = this.clearFav.bind(this);
         this.state = {
             movies: [],
             searchParams: searchParams,
@@ -32,6 +32,10 @@ class Movies extends React.Component {
     newFav = (newFav) => {
         console.log("newFav");
         this.setState({favUpdate: newFav});
+      };
+     
+    clearFav = () => {
+        this.setState({favUpdate: null});
       };
 
 
@@ -136,7 +140,7 @@ class Movies extends React.Component {
         let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined /> : <CaretRightOutlined />;
         return (
             <React.Fragment>
-                <Layout favUpdate={this.state.favUpdate}>
+                <Layout favUpdate={this.state.favUpdate} clearFav={this.clearFav}>
                     <div className="columns">
                         {this.state.movieFilterExpand ? <MovieFilter
                             updateQuery={this.updateQuery}

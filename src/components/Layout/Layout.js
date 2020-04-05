@@ -5,13 +5,14 @@ import FavoritesBar from "./FavoritesBar";
 import { makeAuthUrl } from '../../services/auth'
 import { queryOptions, removeFavorite } from '../../services/helper'
 
-const Layout = ({favUpdate,children}) => {
+const Layout = ({clearFav,favUpdate,children}) => {
   const [favorites, setFavorites] = useState([]);
 
   const update = () => {
     if(favUpdate !== null){
       if(!favorites.find(({id}) => id === favUpdate.id) ){
         favorites.push(favUpdate);
+        clearFav();
       }
     }
   };
