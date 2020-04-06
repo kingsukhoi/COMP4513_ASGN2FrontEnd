@@ -30,13 +30,12 @@ const Login = () => {
         console.error('Something went very wrong!');
       });
   }
-
     return (
       <div className="is-fullheight filmHero">
     <div id="login-container">
             <Form
               name="login"
-              className="login-form"
+              className="login-form box"
               initialValues={{
                 remember: true,
               }}

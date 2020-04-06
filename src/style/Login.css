@@ -33,3 +33,16 @@
 .center{
     margin-top: 20%;
 }
+
+.box {
+    background: '#F5F5F5';
+    padding: '10px'
+}
+
+.login-form input {
+    background-color: inherit
+}
+
+.ant-form-item {
+    margin-bottom: 12px;
+}
