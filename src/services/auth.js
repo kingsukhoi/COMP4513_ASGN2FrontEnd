@@ -1,11 +1,12 @@
 import { navigate } from 'gatsby';
+import * as _ from 'lodash';
 import jwt from "jsonwebtoken"
 
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getToken = () => {
   const tokenObj = JSON.parse(window.localStorage.getItem("token"));
-  if (isBrowser() && tokenObj.token) {
+  if (isBrowser() && tokenObj!=null && ! _.isEmpty(tokenObj)) {
     const decoded = jwt.decode(tokenObj.token);
     if (new Date(decoded['exp'] * 1000) > Date.now()) {
       return tokenObj;
