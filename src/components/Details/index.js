@@ -23,9 +23,7 @@ class Details extends React.Component {
             movieId: null,
         }
 
-    }
-
-    
+    }  
 
     async componentDidMount() {
         const movieID = getSearchParam("id");
@@ -37,23 +35,15 @@ class Details extends React.Component {
     }
 
     async componentDidUpdate(prevProps, prevState) {
-        if (this.state.active === "Details") {
-            const movieId = getSearchParam("id");
-            if(prevState.movieId !== movieId ) {
-                console.log("update");
-                console.log("fetching new state");
-            console.log(prevState);
-            console.log(this.state);
+        const movieId = getSearchParam("id");
+        if(prevState.movieId !== movieId ) {
             const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
             const request = await fetch(authUrl);
             let parsedMovie = await request.json();
-            console.log("updated")
-            console.log(parsedMovie);
+
             if(parsedMovie[0] != null && typeof parsedMovie[0] !== 'undefined')
                 {this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false, movieId: movieId});
             }
-            }
-            
         }
     }
     
