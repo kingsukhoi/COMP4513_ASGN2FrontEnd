@@ -13,7 +13,7 @@ import '../style/Global.css'
 const App = () => {
     return (
       <Router basepath="/app">
-        <PrivateRoute path="/" component={Home}/>
+        {/* <PrivateRoute path="/" component={Home}/> */}
         <PrivateRoute path="/movies" component={Movies}/>
         <PrivateRoute path="/details" component={Details}/>
         <Login path="/login"/>

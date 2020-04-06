@@ -1,0 +1,37 @@
+:root{
+    --primaryLightest:#7265a8;
+    --primaryLight:#534395;
+    --primary:#44377a;
+    --primaryDark:#352b5f;
+    --primaryDarkest:#2e2552;
+
+    --whiteLightest:#f8faff;
+    --whiteLight:#f6f9ff;
+    --white:#f4f8ff;
+
+    --greyLightest:#9096a2;
+    --greyLight:#6b7483;
+    --grey:#465164;
+    --greyDark:#303b4e;
+    --greyDarkest:#262f3e;
+
+    --accentRedLighestest:#f16361;
+    --accentRedLight:#f0524f;
+    --accentRed:#ef413e;
+    --accentRedDark:#c43633;
+    --accentRedDarkest:#992a28;
+
+    --accentGreenLightest:#c4ffbe;
+    --accentGreenLight:#b3ffab;
+    --accentGreen:#a3ff99;
+    --accentGreenDark:#86d17e;
+    --accentGreenDarkest:#68a362;
+
+    --accentYellowLightest:#fffdaf;
+    --accentYellowLight:#fffd98;
+    --accentYellow:#fffd8d;
+    --accentYellowDark:#fffd82;
+    --accentYellowDarkest:#e8e677;
+
+
+}

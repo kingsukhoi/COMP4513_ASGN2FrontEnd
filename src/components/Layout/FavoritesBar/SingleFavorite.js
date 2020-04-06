@@ -30,7 +30,7 @@ class SingleFavorite extends React.Component {
                                                             /> : null}
                     <img
                         className="favImage"
-                        src={this.posterUrl + this.props.favorite.poster}
+                        src={this.props.favorite.poster ? this.posterUrl + this.props.favorite.poster : this.posterUrl + this.props.favorite.imageUrl}
                         alt={this.props.favorite.alt}/>
                 </figure>
             </div>

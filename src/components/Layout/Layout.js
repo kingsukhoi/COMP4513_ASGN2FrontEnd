@@ -5,8 +5,18 @@ import FavoritesBar from "./FavoritesBar";
 import { makeAuthUrl } from '../../services/auth'
 import { queryOptions, removeFavorite } from '../../services/helper'
 
-const Layout = ({ children }) => {
+const Layout = ({clearFav,favUpdate,children}) => {
   const [favorites, setFavorites] = useState([]);
+
+  const update = () => {
+    if(favUpdate !== null){
+      if(!favorites.find(({id}) => id === favUpdate.id) ){
+        favorites.push(favUpdate);
+        clearFav();
+      }
+    }
+  };
+  
   useEffect( () => {
     async function getFavorites() {
         const authUrl = makeAuthUrl(queryOptions.favorites);
@@ -37,13 +47,16 @@ const Layout = ({ children }) => {
     setFavorites(filterFav);
   };
 
+
+  console.log("componentWillReceiveProps", {favUpdate,children});
+  update();
   return (
     <div>
       <Affix offsetTop={0} >
         <NavBar />
         <FavoritesBar favorites={favorites} removeFav={removeFav} />
       </Affix>
-      <main >{children}</main>
+      <main>{children}</main>
     </div>
   );
 }
