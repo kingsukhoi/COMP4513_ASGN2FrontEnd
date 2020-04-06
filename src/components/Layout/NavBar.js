@@ -133,19 +133,22 @@ useEffect(() => {
           <p>API Endpoints:</p>
           <ul>
             <li>
-              <Link to="/api/movies">Return All Movies</Link>
+            <a href={makeAuthUrl(queryOptions.allMovies)}>Return All Movies</a>
             </li>
             <li>
-              <Link to="/api/movies/20">Movie By ID</Link>
+            <a href={makeAuthUrl(`${queryOptions.singleMovie}20`)}>Movie By ID: 20</a>
             </li>
             <li>
-              <Link to="/api/brief">Return All Movie Brief Data</Link>
+            <a href={makeAuthUrl(`${queryOptions.brief}`)}>Return All Movie Brief Data</a>
             </li>
             <li>
-              <Link to="/api/find/title/mino">Search by Title</Link>
+            <a href={makeAuthUrl(`${queryOptions.title}mino`)}>Search by Title: mino</a>
             </li>
             <li>
-              <Link to="/api/find/yeal/2000/2010">Search by Year</Link>
+            <a href={makeAuthUrl(`${queryOptions.findYear}1990/2000`)}>Search by Year: 1990-2000</a>
+            </li>
+            <li>
+            <a href={makeAuthUrl(`${queryOptions.findRating}5/6`)}>Search by Rating: 5-6</a>
             </li>
           </ul>
         </Modal>
