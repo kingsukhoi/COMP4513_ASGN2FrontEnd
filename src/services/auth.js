@@ -1,10 +1,18 @@
 import { navigate } from 'gatsby';
+import jwt from "jsonwebtoken"
+
 export const isBrowser = () => typeof window !== "undefined"
 
-export const getToken = () =>
-  isBrowser() && window.localStorage.getItem("token")
-    ? JSON.parse(window.localStorage.getItem("token"))
-    : {}
+export const getToken = () => {
+  const tokenObj = JSON.parse(window.localStorage.getItem("token"));
+  if (isBrowser() && tokenObj.token) {
+    const decoded = jwt.decode(tokenObj.token);
+    if (new Date(decoded['exp'] * 1000) > Date.now()) {
+      return tokenObj;
+    }
+  }
+  return {}
+}
 
 const setToken = token =>
   window.localStorage.setItem("token", JSON.stringify(token))
