@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Form, Input, Button, Alert, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import '../../style/Login.css'
-import "../../style/Home.css";
+import '../../style/colors.css';
+import '../../style/Login.css';
+// import "../../style/Home.css";
 import { navigate } from "gatsby";
 import { handleLogin, isLoggedIn } from '../../services/auth'
 
 const Login = () => {
-  console.log(isLoggedIn());
+  //console.log(isLoggedIn());
   if (isLoggedIn()) {
     navigate("/app/movies");
   }
@@ -31,6 +32,7 @@ const Login = () => {
   }
 
     return (
+      <div className="is-fullheight filmHero">
     <div id="login-container">
             <Form
               name="login"
@@ -75,6 +77,7 @@ const Login = () => {
               </Form.Item>
             </Form>
             {invalidLogin}
+    </div>
     </div>
   )
 };
