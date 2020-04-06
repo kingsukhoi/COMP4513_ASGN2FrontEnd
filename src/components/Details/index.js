@@ -14,17 +14,35 @@ class Details extends React.Component {
 
     constructor(props) {
         super(props);
+        this.clearFav = this.clearFav.bind(this);
         this.castButton = this.castButton.bind(this);
         this.backToDetailsButton = this.backToDetailsButton.bind(this);
+        this.state = {
+            isLoading: true,
+            favUpdate: null
+        }
+
     }
+
+    
 
     async componentDidMount() {
         const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
         const request = await fetch(authUrl);
         let parsedMovie = await request.json();
         console.log(parsedMovie);
-        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null});
+        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false});
     }
+    
+    newFav = (newFav) => {
+        console.log("newFav");
+        this.setState({favUpdate: newFav});
+      };
+     
+    clearFav = () => {
+        this.setState({favUpdate: null});
+      };
+
 
     castButton(cast_id) {
         const newState = cloneDeep(this.state);
@@ -38,11 +56,11 @@ class Details extends React.Component {
     }
   
     render() {
-         if (!this.state) {
+         if (this.state.isLoading) {
             return (<div  className="is-text-centered fa-10x fa-spin" ><LoadingOutlined /></div>)
         } else {
             return (
-                <Layout>
+                <Layout favUpdate={this.state.favUpdate} clearFav={this.clearFav}>
                 <div className="View">
                     <div className="columns">
                         <div className="column is-two-thirds">
