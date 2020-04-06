@@ -13,7 +13,17 @@ class CastView extends React.Component {
 
 	photoApi = "https://image.tmdb.org/t/p/w500/";
 
-	async componentDidMount() {
+	componentDidMount() {
+		this.loadData();
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if(prevProps != this.props){
+			this.loadData();
+			console.log("updated");
+		}
+	}
+	async loadData() {
 		("started");
 		const api_key = "fef700429c99e494247e8de834e89564";
 		const request = await fetch("https://api.themoviedb.org/3/person/" + this.props.cast_id + "?api_key=" + api_key);

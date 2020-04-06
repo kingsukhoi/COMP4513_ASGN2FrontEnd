@@ -19,7 +19,8 @@ class Details extends React.Component {
         this.backToDetailsButton = this.backToDetailsButton.bind(this);
         this.state = {
             isLoading: true,
-            favUpdate: null
+            favUpdate: null,
+            movieId: null,
         }
 
     }
@@ -27,11 +28,33 @@ class Details extends React.Component {
     
 
     async componentDidMount() {
-        const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
+        const movieID = getSearchParam("id");
+        const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${movieID}`);
         const request = await fetch(authUrl);
         let parsedMovie = await request.json();
         console.log(parsedMovie);
-        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false});
+        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false, movieId: movieID});
+    }
+
+    async componentDidUpdate(prevProps, prevState) {
+        if (this.state.active === "Details") {
+            const movieId = getSearchParam("id");
+            if(prevState.movieId !== movieId ) {
+                console.log("update");
+                console.log("fetching new state");
+            console.log(prevState);
+            console.log(this.state);
+            const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
+            const request = await fetch(authUrl);
+            let parsedMovie = await request.json();
+            console.log("updated")
+            console.log(parsedMovie);
+            if(parsedMovie[0] != null && typeof parsedMovie[0] !== 'undefined')
+                {this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false, movieId: movieId});
+            }
+            }
+            
+        }
     }
     
     newFav = (newFav) => {
@@ -56,7 +79,7 @@ class Details extends React.Component {
     }
   
     render() {
-         if (this.state.isLoading) {
+         if (this.state.isLoading || !this.state.movie) {
             return (<div  className="is-text-centered fa-10x fa-spin" ><LoadingOutlined /></div>)
         } else {
             return (
