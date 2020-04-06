@@ -29,7 +29,7 @@ function DetailsView(props) {
 
             <div className="column container">
                 <div>
-                    <h1 className="title">{props.title} ({date.getFullYear()})  <Rate allowHalf count={10} disabled value={rating} /></h1>
+                    <h1 className="title">{props.title} ({date.getFullYear()})  <Rate allowHalf count={10} disabled value={rating} className="is-pulled-right"/></h1>
                     <h3 className="subtitle">{props.tagline}</h3>
                     <div className="tile is-pulled-right">
                         <p class="subtitle is-5 is-pulled-right">Details</p>
