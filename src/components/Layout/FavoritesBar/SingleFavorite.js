@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../style/Favorite.css"
 import { CloseCircleTwoTone } from '@ant-design/icons'
+import { navigate } from "@reach/router";
 
 
 class SingleFavorite extends React.Component {
@@ -29,6 +30,7 @@ class SingleFavorite extends React.Component {
                                                             className="fa-2x closeButton"
                                                             /> : null}
                     <img
+                        onClick={() => navigate(`/app/details/?id=${this.props.favorite.id}`)}
                         className="favImage"
                         src={this.props.favorite.poster ? this.posterUrl + this.props.favorite.poster : this.posterUrl + this.props.favorite.imageUrl}
                         alt={this.props.favorite.alt}/>

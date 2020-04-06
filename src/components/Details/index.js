@@ -19,19 +19,32 @@ class Details extends React.Component {
         this.backToDetailsButton = this.backToDetailsButton.bind(this);
         this.state = {
             isLoading: true,
-            favUpdate: null
+            favUpdate: null,
+            movieId: null,
         }
 
-    }
-
-    
+    }  
 
     async componentDidMount() {
-        const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
+        const movieID = getSearchParam("id");
+        const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${movieID}`);
         const request = await fetch(authUrl);
         let parsedMovie = await request.json();
         console.log(parsedMovie);
-        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false});
+        this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false, movieId: movieID});
+    }
+
+    async componentDidUpdate(prevProps, prevState) {
+        const movieId = getSearchParam("id");
+        if(prevState.movieId !== movieId ) {
+            const authUrl = makeAuthUrl(`${queryOptions.singleMovie}${getSearchParam("id")}`);
+            const request = await fetch(authUrl);
+            let parsedMovie = await request.json();
+
+            if(parsedMovie[0] != null && typeof parsedMovie[0] !== 'undefined')
+                {this.setState({ movie: parsedMovie[0], active: 'Details', crew: null, isLoading: false, movieId: movieId});
+            }
+        }
     }
     
     newFav = (newFav) => {
@@ -41,7 +54,7 @@ class Details extends React.Component {
      
     clearFav = () => {
         this.setState({favUpdate: null});
-      };
+    };
 
 
     castButton(cast_id) {
@@ -56,7 +69,8 @@ class Details extends React.Component {
     }
   
     render() {
-         if (this.state.isLoading) {
+        const { movie } = this.state;
+         if (this.state.isLoading || !this.state.movie) {
             return (<div  className="is-text-centered fa-10x fa-spin" ><LoadingOutlined /></div>)
         } else {
             return (
@@ -68,18 +82,27 @@ class Details extends React.Component {
                                 <DetailsView
                                     id={getSearchParam("id")} 
                                     castButton={this.castButton}
-                                    title={this.state.movie.title}
-                                    poster={this.state.movie.poster}
-                                    production={this.state.movie.production}
-                                    details={this.state.movie.details}
-                                    countries={this.state.movie.production.countries}
-                                    companies={this.state.movie.production.companies}
+                                    title={movie.title}
+                                    poster={movie.poster}
+                                    production={movie.production}
+                                    details={movie.details}
+                                    countries={movie.production.countries}
+                                    companies={movie.production.companies}
+                                    rating={movie.ratings.average}
+                                    imdb={movie.imdb_id}
+                                    tmdb={movie.tmdb_id}
+                                    tagline={movie.tagline}
+                                    runtime={movie.runtime}
+                                    revenue={movie.revenue}
+                                    release={movie.release_date}
+                                    newFav={this.newFav}
+                              
                                 /> :
                                 <CastView castButton={this.backToDetailsButton} cast_id={this.state.cast_id}/>}
                         </div>
                         <div className="column">
-                            <ViewTabs castButton={this.castButton} cast={this.state.movie.production.cast}
-                                      crew={this.state.movie.production.crew}/>
+                            <ViewTabs castButton={this.castButton} cast={movie.production.cast}
+                                      crew={movie.production.crew}/>
                         </div>
                     </div>
                 </div>

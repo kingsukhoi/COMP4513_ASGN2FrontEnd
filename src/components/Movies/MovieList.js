@@ -53,17 +53,15 @@ class MovieList extends React.Component {
                     
                 })}
                 </TransitionGroup>
-        )
-    }
-        return (
-            <tbody><TransitionGroup className="Movies"><tr><td/><td/><td>No Matches</td><td/><td/></tr></TransitionGroup></tbody>
-        )
+            )
+        }
     };
 
     render() {
         const titleArrow = (this.state.selected === "title" && this.state.reverse) ? <CaretDownOutlined/> : <CaretUpOutlined/>;
         const yearArrow = (this.state.selected === "year" && this.state.reverse) ? <CaretDownOutlined/> : <CaretUpOutlined/>;
         const ratingArrow = (this.state.selected === "rating" && this.state.reverse) ? <CaretDownOutlined/> : <CaretUpOutlined/>;
+        const display = this.props.movies.length > 0;
         return (
             <div className="box table-container">
                 <PageHeader
@@ -90,6 +88,7 @@ class MovieList extends React.Component {
                 >
 
                 </PageHeader>
+                <div className="empty-search" hidden={ display }> Your search found no results</div>
                 <div className={movieFlex.containerFlex} >
                     <this.RenderMovies />
 
