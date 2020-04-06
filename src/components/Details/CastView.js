@@ -1,5 +1,6 @@
 import React from "react";
-import { LoadingOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CloseOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
 
 class CastView extends React.Component {
 
@@ -61,10 +62,11 @@ class CastView extends React.Component {
 					<div className="card column">
 					
 						<div className="card-image">
-							<figure className="image">
+							<figure className="image ">
 								<img src={this.photoApi + profile_path} alt={name}
 									 style={{margin: "auto", height: "50vh", width: "auto"}}/>
 							</figure>
+							<Button danger className="is-pulled-right" onClick={() => this.props.castButton()}>Close <CloseOutlined /></Button>
 						</div>
 
 						<div className="card-content">
@@ -76,16 +78,16 @@ class CastView extends React.Component {
 								<div className="media-content">
 									<h4 className="title is-4">{name}</h4>
 									<p className="subtitle">{`Born: ${birthdayString}, ${place_of_birth}`}</p>
-									<a href={`https://www.imdb.com/name/${imdb_id}`} className="is-link is-6">IMDB
-										Profile</a>
+									<Button > <a href={`https://www.imdb.com/name/${imdb_id}`} className="is-link is-6">IMDB
+									Profile</a></Button>	
+									
 								</div>
 							</div>
 							<div className="media-content">
 								{biography}
 							</div>
 						
-						<a onClick={() => this.props.castButton()} className="button is-1 is-danger is-pulled-right"
-							   style={{margin: "0"}}>Close</a>
+							
 							   </div>
 					</div>
 				</div>);
