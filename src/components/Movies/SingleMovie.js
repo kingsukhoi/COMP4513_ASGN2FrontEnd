@@ -27,7 +27,7 @@ class SingleMovie extends React.Component {
                 bodyStyle={{padding: 0}}
             >
                 <Card.Grid hoverable={false} className={cardStyle.imageStyle}><img  src={this.posterLink + this.props.imageUrl} alt={this.props.title} onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}/></Card.Grid>
-                <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.title}</Card.Grid>
+                <Card.Grid hoverable={false} className={cardStyle.gridStyle} onClick={()=>{navigate(`/app/details/?id=${this.props.id}`)}}> {this.props.title}</Card.Grid>
                 <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.releaseDate}</Card.Grid>
                 <Card.Grid hoverable={false} className={cardStyle.gridStyle}> {this.props.rating}</Card.Grid>
             </Card>
