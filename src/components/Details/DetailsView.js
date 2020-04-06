@@ -22,6 +22,7 @@ function DetailsView(props) {
             <div className="column is-two-fifths">
                 <div className="card-image">
                     <figure className="image is-2by3">
+                        {/* Modal */}
                         <img src={posterLink + props.poster} alt="Poster"/>
                     </figure>
                 </div>
