@@ -30,7 +30,6 @@ class Movies extends React.Component {
 
 
     newFav = (newFav) => {
-        console.log("newFav");
         this.setState({favUpdate: newFav});
       };
      
@@ -41,7 +40,6 @@ class Movies extends React.Component {
 
     async getMovies(url) {
         const authUrl = makeAuthUrl(url);
-        console.log(authUrl);
         try {
             const request = await fetch(authUrl);
             let parsedMovies = await request.json();
@@ -125,8 +123,6 @@ class Movies extends React.Component {
         results.then((val) => {
             this.setState({ movies: val });
         });
-        console.log("After");
-
     };
     toggleClose = (e) => {
         this.setState({ ...this.state, movieFilterExpand: !this.state.movieFilterExpand })
@@ -137,7 +133,8 @@ class Movies extends React.Component {
     }
 
     render() {
-        let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined /> : <CaretRightOutlined />;
+        const arrowStyle = {paddingTop: "30vh", height: "55vh", fontSize: "24px"};
+        let arrow = this.state.movieFilterExpand ? <CaretLeftOutlined style={arrowStyle}/> : <CaretRightOutlined style={arrowStyle}/>;
         return (
             <React.Fragment>
                 <Layout favUpdate={this.state.favUpdate} clearFav={this.clearFav}>
@@ -148,7 +145,7 @@ class Movies extends React.Component {
                             onSearch={this.filterOnQuery}
                         /> : null}
 
-                        <div className="findme" onClick={this.toggleClose} style={this.generateStyle()}>
+                        <div className="findme is-vcentered" onClick={this.toggleClose} style={this.generateStyle()}>
                             {arrow}
                         </div>
                         <div className="column has-text-centered">

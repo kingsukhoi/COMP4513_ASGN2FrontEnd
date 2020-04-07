@@ -42,7 +42,7 @@ class FavoritesBar extends React.Component {
             <React.Fragment>
                 {this.renderFavsList()}
                 <div style={this.style} onClick={this.toggleClose}>
-                    {this.state.expanded ? <CaretUpOutlined/> : <CaretDownOutlined />}
+                    {this.state.expanded ? <CaretUpOutlined style={{fontSize: "24px"}}/> : <CaretDownOutlined style={{fontSize: "24px"}}/>}
                 </div>
             </React.Fragment>)
     }
