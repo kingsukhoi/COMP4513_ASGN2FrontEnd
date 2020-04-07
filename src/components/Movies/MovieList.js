@@ -3,13 +3,13 @@ import SingleMovie from "./SingleMovie";
 import '../../style/Shrink.css'
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import movieFlex from './movieFlex.module.css'
-import { PageHeader, Button } from 'antd';
+import { PageHeader, Button } from 'antd/es';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 
 class MovieList extends React.Component {
     state = { selected:"title", reverse:true };
 
-    sortValue = (e) => {
+    sortValue = (e) => { 
         //Default sort by title
         let sortOrder = this.props.sortTitle;
 

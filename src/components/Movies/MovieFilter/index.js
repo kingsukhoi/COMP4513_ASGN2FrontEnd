@@ -1,10 +1,10 @@
 import React from 'react';
 import * as _ from "lodash";
 import { queryOptions } from "../../../services/helper";
-import YearFilter from './YearFilter'
-import RatingsFilter from './RatingsFilter'
-import { Button, Input} from "antd"
-
+import YearFilter from './YearFilter';
+import RatingsFilter from './RatingsFilter';
+import { Button, Input} from "antd";
+import '../../../style/colors.css';
 class MovieFilter extends React.Component {
 
     buttonStyle = {
@@ -22,8 +22,8 @@ class MovieFilter extends React.Component {
     render() {
         const { Search } = Input;
         return (
-            <div className="column is-two-fifths filter-container">
-                <div className="container box">
+            <div className="column is-two-fifths">
+                <div className={`container box `} >
                     <h1 className="title has-text-centered">Movie Filters</h1>
                     <label className="title is-3" htmlFor="TitleFilter">Title</label>
 
