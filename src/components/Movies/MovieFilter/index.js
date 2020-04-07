@@ -23,7 +23,7 @@ class MovieFilter extends React.Component {
         const { Search } = Input;
         return (
             <div className="column is-two-fifths">
-                <div className={`container box `} >
+                <div className={`container box filter`} >
                     <h1 className="title has-text-centered">Movie Filters</h1>
                     <label className="title is-3" htmlFor="TitleFilter">Title</label>
 

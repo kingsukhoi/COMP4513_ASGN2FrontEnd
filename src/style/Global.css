@@ -16,3 +16,6 @@ body {
 div[role="group"][tabindex] {
     height: 100vh;
 }
+.title{
+    color:var(--greyLightest);
+}

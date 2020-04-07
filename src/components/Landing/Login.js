@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Alert, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
-import '../../style/colors.css';
+import 'antd/dist/antd.less';
+import '../../style/colors.css'
 import '../../style/Login.css';
 // import "../../style/Home.css";
 import { navigate } from "gatsby";

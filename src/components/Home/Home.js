@@ -1,6 +1,5 @@
 import React from "react";
 import * as _ from "lodash";
-import { Link } from "gatsby"
 import { navigate } from "@reach/router"
 import { CSSTransition } from 'react-transition-group';
 import "../../style/Home.css";

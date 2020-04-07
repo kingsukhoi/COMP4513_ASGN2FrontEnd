@@ -5,6 +5,8 @@
     --primaryDark:#352b5f;
     --primaryDarkest:#2e2552;
 
+    --primaryAlmostWhite:#DDDAE6;
+
     --whiteLightest:#f8faff;
     --whiteLight:#f6f9ff;
     --white:#f4f8ff;
@@ -27,11 +29,29 @@
     --accentGreenDark:#86d17e;
     --accentGreenDarkest:#68a362;
 
-    --accentYellowLightest:#fffdaf;
+    --accentYellowLightest:#fffeea;
     --accentYellowLight:#fffd98;
     --accentYellow:#fffd8d;
     --accentYellowDark:#fffd82;
     --accentYellowDarkest:#e8e677;
+}
 
-
+.ant-radio-wrapper span{
+    color:var(--whiteLightest)
+}
+.ant-input, .ant-input-number-input{
+    background-color: var(--primaryAlmostWhite);
+}
+.ant-btn{
+    font-weight: bold;
+    border-width: 2px;
+}
+.ant-card-grid{
+    background-color: var(--greyLightest);
+    border-color: var(--greyLight);
+    border-width: 2px;
+}
+.ant-card-body{
+    background-color: var(--primaryDarkest);
+    border-color: var(--grey);
 }

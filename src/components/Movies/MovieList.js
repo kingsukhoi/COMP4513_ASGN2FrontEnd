@@ -3,7 +3,7 @@ import SingleMovie from "./SingleMovie";
 import '../../style/Shrink.css'
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import movieFlex from './movieFlex.module.css'
-import { PageHeader, Button } from 'antd/es';
+import { PageHeader, Button } from 'antd';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 
 class MovieList extends React.Component {
