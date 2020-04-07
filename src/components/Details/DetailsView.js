@@ -1,36 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import DetailsStub from './DetailsStub'
-import { Rate, Tag } from 'antd';
+import { Rate, Tag, Modal } from 'antd';
 import { HeartTwoTone } from '@ant-design/icons';
-import {addFavorite} from '../../services/helper'
+import { addFavorite } from '../../services/helper'
 
 function DetailsView(props) {
+    const [largePoster, setLargePoster] = useState(false);
+    const openPoster = () => { setLargePoster(true) }
+    const closePoster = () => { setLargePoster(false) }
+
+
+    
 
     const addToFavorite = () => {
         addFavorite(props.id);
         props.newFav(props);
     }
     const imdbLink = `https://www.imdb.com/title/${props.imdb}`
-    const tmdbLink =`https://www.themoviedb.org/movie/${props.tmdb}`
+    const tmdbLink = `https://www.themoviedb.org/movie/${props.tmdb}`
     const posterLink = "https://image.tmdb.org/t/p/w500/";
-    const rating = Math.ceil(props.rating*2)/2;
+    const rating = Math.ceil(props.rating * 2) / 2;
     const date = new Date(props.release);
     const earnings = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.revenue);
     return (
         <div className="columns ">
-
+            <Modal  visible={largePoster}   footer={[]}>
+                <img onClick={closePoster} src={posterLink + props.poster} alt="Poster" />
+            </Modal>
             <div className="column is-two-fifths">
-                <div className="card-image">
+                <div className="card-image" onClick={openPoster}>
                     <figure className="image is-2by3">
-                        {/* Modal */}
-                        <img src={posterLink + props.poster} alt="Poster"/>
+                        <img src={posterLink + props.poster} alt="Poster" />
                     </figure>
                 </div>
             </div>
 
             <div className="column container">
                 <div>
-                    <h1 className="title">{props.title} ({date.getFullYear()})  <Rate allowHalf count={10} disabled value={rating} className="is-pulled-right"/></h1>
+                    <h1 className="title">{props.title} ({date.getFullYear()})  <Rate allowHalf count={10} disabled value={rating} className="is-pulled-right" /></h1>
                     <h3 className="subtitle">{props.tagline}</h3>
                     <div className="tile is-pulled-right">
                         {/* <p class="subtitle is-5 is-pulled-right">Details</p> */}
@@ -40,22 +47,22 @@ function DetailsView(props) {
                             <div className="tile is-pulled-right">
                                 <Tag color="#F5DE50"> <a href={imdbLink}>IMDb</a></Tag>
                                 <Tag color="#2db7f5"><a href={tmdbLink}>TMDB</a></Tag>
-                                <HeartTwoTone stlye={{float:'right'}} twoToneColor="#eb2f96" onClick={addToFavorite} />
+                                <HeartTwoTone stlye={{ float: 'right' }} twoToneColor="#eb2f96" onClick={addToFavorite} />
                             </div>
                         </div>
-                        </div>
-                        
-                        <p class="subtitle is-5">Overview</p>
-                        <div className="tile">{props.details.overview}</div>
-                            
-                </div>
-                    <div className="columns">
-                        <DetailsStub title="Countries" data={props.countries}/>
-                        <DetailsStub title="Companies" data={props.companies}/>
-                        <DetailsStub title="Genres" data={props.details.genres}/>
                     </div>
-                        <DetailsStub title="Keywords" data={props.details.keywords}/> 
+
+                    <p class="subtitle is-5">Overview</p>
+                    <div className="tile">{props.details.overview}</div>
+
                 </div>
+                <div className="columns">
+                    <DetailsStub title="Countries" data={props.countries} />
+                    <DetailsStub title="Companies" data={props.companies} />
+                    <DetailsStub title="Genres" data={props.details.genres} />
+                </div>
+                <DetailsStub title="Keywords" data={props.details.keywords} />
+            </div>
         </div>
 
 
