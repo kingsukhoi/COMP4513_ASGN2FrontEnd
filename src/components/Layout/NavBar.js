@@ -73,17 +73,39 @@ useEffect(() => {
             </Button>,
           ]}
         >
-          <p>Group Members:</p>
+          <h3 className="title is-3">Group Members:</h3>
           <ul>
             <li>Farsos Bulsara</li>
             <li>Trevor Brown</li>
             <li>Jason Hutson</li>
             <li>Austin Arndt</li>
           </ul>
+          <h3 className="title is-3">Technologies</h3>
           <ul>
-            <li>
+          <li><a href ="https://nodejs.org/en/about/">NodeJS</a> </li>
+          <li><a href ="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a> </li>
+          <li><a href ="https://github.com/about">Git</a> </li>
+          <li><a href ="https://www.netlify.com/">Netify</a> </li>
+          <li><a href ="https://cloud.google.com/appengine/docs">App Engine</a> </li>
+          <li><a href ="https://www.docker.com/">Docker</a> </li>
+          <li><a href ="https://docs.npmjs.com/about-npm/">NPM</a> </li>
+          <li><a href ="https://jwt.io/">JWT</a> </li>
+          </ul>
+          <h3 className="title is-3">Libraries/Frameworks</h3>
+          <ul>
+
+          </ul>
+             <li><a href="https://www.gatsbyjs.org/">Gatsby</a></li>
+              <li><a href="https://reactjs.org/">React</a></li>
+                <li><a href="https://ant.design/">Ant</a></li>
+            <li><a href="https://expressjs.com/">Express</a></li>
+           <li><a href="http://www.passportjs.org/">Passport</a></li>
+           <li><a href="https://mongoosejs.com/">Mongoose</a></li>
+           <li>
               <a href="https://bulma.io/">Bulma CSS</a>
             </li>
+          <ul>
+          <h3 className="title is-3">Helpful resources</h3>
             <li>
               <a href="https://reacttraining.com/react-router/web/example/basic">
                 React Router
@@ -130,7 +152,7 @@ useEffect(() => {
               </a>
             </li>
           </ul>
-          <p>API Endpoints:</p>
+          <h3 className="title is-3">API Endpoints:</h3>
           <ul>
             <li>
             <a href={makeAuthUrl(queryOptions.allMovies)}>Return All Movies</a>
